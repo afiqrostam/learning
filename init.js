@@ -9,5 +9,5 @@ google.script.run.withSuccessHandler(
       setTimeout(function(){
         $('#feed_success').alert('close');
         init=e.content;
-        $('#main').show()},1000,e)}
+        $('#main').show()},500,e)}
     else{$('#feed').append(get_alert({id:'feed_fail',type:'danger',msg:'load data fail.'}))}}).get_var('init')
