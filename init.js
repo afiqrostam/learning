@@ -10,4 +10,4 @@ google.script.run.withSuccessHandler(
         $('#feed_success').alert('close');
         init=e.content;
         $('#main').show()},500,e)}
-    else{$('#feed').append(get_alert({id:'feed_fail',type:'danger',msg:'load data fail.'}))}}).get_var('init')
+    else{$('#feed').append(get_alert({id:'feed_fail',type:'danger',msg:'load data fail.'}))}}).get_var('xx')
