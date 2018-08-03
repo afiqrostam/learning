@@ -5,9 +5,9 @@ google.script.run.withSuccessHandler(
   function(e){
     $('#feed_load').alert('close');
     if(e.status){
-      $('#feed').html(get_alert({id:'feed_success',type:'primary',msg:'load data success.'}));
+      $('#feed').append(get_alert({id:'feed_success',type:'primary',msg:'load data success.'}));
       setTimeout(function(){
         $('#feed_success').alert('close');
         init=e.content;
         $('#main').show()},1000,e)}
-    else{$('#feed').html(get_alert({id:'feed_fail',type:'danger',msg:'load data fail.'}))}}).get_var('init')
+    else{$('#feed').append(get_alert({id:'feed_fail',type:'danger',msg:'load data fail.'}))}}).get_var('init')
