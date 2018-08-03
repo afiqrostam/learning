@@ -4,5 +4,5 @@ var get_alert=function(e){
       $('<strong>').html('!!! ')).append(e.msg);
     if(e.feed){
       $('#feed').append(alert);
-      setTimeout(function(){alert.alert('close')},1500,alert)}
+      setTimeout(function(){alert.alert('close')},500,alert)}
     else{return alert}}}
