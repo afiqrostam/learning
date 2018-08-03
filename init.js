@@ -1,5 +1,4 @@
 var init;
-$('#main').hide();
 $('#feed').html(get_alert({id:'feed_load',type:'secondary',msg:'loading data.'}));
 google.script.run.withSuccessHandler(
   function(e){
@@ -10,4 +9,4 @@ google.script.run.withSuccessHandler(
         $('#feed_success').alert('close');
         init=e.content;
         $('#main').show()},500,e)}
-    else{$('#feed').append(get_alert({id:'feed_fail',type:'danger',msg:'load data fail.'}))}}).get_var('xx')
+    else{$('#feed').append(get_alert({id:'feed_fail',type:'danger',msg:'load data fail.'}))}}).get_var('init')
