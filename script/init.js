@@ -6,5 +6,5 @@ google.script.run.withSuccessHandler(
       get_alert({id:'feed_success',type:'primary',msg:'load data success.',feed:true});
       $('#feed_success').on('closed.bs.alert',function(){
         init=e.content;
-        $('#main').removeClass('in').show().addClass('show')})}
+        $('#main').addClass('show')})}
     else{get_alert({id:'feed_fail',type:'danger',msg:'load data fail.',feed:true})}}).get_var('init')
