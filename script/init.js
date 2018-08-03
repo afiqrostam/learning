@@ -4,6 +4,7 @@ google.script.run.withSuccessHandler(
   function(e){
     if(e.status){
       get_alert({id:'feed_success',type:'primary',msg:'load data success.',feed:true});
-      init=e.content;
-      $('#main').show()}
+      $('#feed_success').on('closed.bs.alert',function(){
+        init=e.content;
+        $('#main').show()})}
     else{get_alert({id:'feed_fail',type:'danger',msg:'load data fail.',feed:true})}}).get_var('init')
