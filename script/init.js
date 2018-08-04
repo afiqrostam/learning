@@ -10,7 +10,7 @@ if(window.location.host.includes('googleusercontent')){
           $('#main').addClass('show')})}
       else{
         get_alert({id:'feed_fail',type:'danger',msg:'load data fail.',feed:true});
-        $('#main').addClass('show')}}).get_var('init')}
+        $('#feed_fail').on('closed.bs.alert',function(){$('#main').addClass('show')})}}).get_var('init')}
 else{
   get_alert({id:'feed_fail',type:'danger',msg:'load data fail.',feed:true});
-  $('#main').addClass('show')}
+  $('#feed_fail').on('closed.bs.alert',function(){$('#main').addClass('show')})}
