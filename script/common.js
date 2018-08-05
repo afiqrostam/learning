@@ -23,14 +23,14 @@ function get_ready(){
 			init_project();
 	    console.timeEnd(f.f_n);
 	    delete f.f_n;
-	    $('#main_loader').modal('hide');
-	    $('#main_loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}
+	    $('#main-loader').modal('hide');
+	    $('#main-loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}
     else{
       console.log(e.con);
       console.timeEnd(f.f_n);
       delete f.f_n;
-	    $('#main_loader').modal('hide');
-	    $('#main_loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}}).withUserObject(def).get_batch_data_list({
+	    $('#main-loader').modal('hide');
+	    $('#main-loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}}).withUserObject(def).get_batch_data_list({
 		sheet_id:init.sp.settings.id,
 		sheet_range:init.sp.settings.ranges.map(function(e){return e.sheet})})}
 
