@@ -18,7 +18,8 @@ function get_ready(){
   google.script.run.withSuccessHandler(
     function(e,f){
     if(e.s){
-      init.sp.settings.ranges.forEach(function(a,b){f[a.name]=get_2D(e.res[b].values,a)});
+      init.sp.settings.ranges.forEach(function(a,b){
+        f[a.name]=get_2D(e.res[b].values,a)});
       console.timeEnd(f.f_n);
       delete f.f_n;
       get_alert({id:'feed_success',type:'primary',msg:'load data..success',feed:true});
@@ -43,18 +44,6 @@ function get_2D(dt,st){
 			else{
 				if(!st.trunc){return ip[hd[x]]=y}
 				else{if(hd[x]!='username'&&hd[x]!='timestamp'){return ip[hd[x]]=y}}}}});
-    if(st.name=='project'){
-			var root=ip.root.split(',');
-			var find_root=root.filter(function(f){return def.bu[f].country!=undefined});
-			if(find_root.length==0){
-				while(find_root.length==0){
-					var new_root=root.map(function(f){if(def.bu[f].root!=undefined){return def.bu[f].root}else{return f}});
-					if(new_root!=root){root=new_root}else{break}
-					var find_root=root.filter(function(f){return def.bu[f].country!=undefined})}}
-			if(find_root.length!=0){
-				find_root=find_root.map(function(f){return def.bu[f].country});
-				var trim=array_unique(find_root);	
-				if(trim.length==1){ip.country=trim[0]}}}
         lt[ip[st.key]]=ip});
     console.timeEnd(arguments.callee.name);
     return lt}
