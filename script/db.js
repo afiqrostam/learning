@@ -1,3 +1,8 @@
+function init_bu(){
+	console.time(arguments.callee.name);
+	Object.getOwnPropertyNames(def.bu).forEach(function(e){def.bu[e].has_child=get_bu_child(e)});
+	console.timeEnd(arguments.callee.name)}
+
 function get_bu_region(){
 	return Object.getOwnPropertyNames(def.bu).filter(
 		function(e){return def.bu[e].root==undefined}).map(
@@ -33,6 +38,11 @@ function get_bu_child(id){
       console.error('no futher child found');
       console.timeEnd(arguments.callee.name);
       return false}}}
+
+function init_project(){
+	console.time(arguments.callee.name);
+	Object.getOwnPropertyNames(def.project).forEach(function(e){get_project_country(e)});
+	console.timeEnd(arguments.callee.name)}
          
 function get_country_current(){
   return array_unique(Object.getOwnPropertyNames(def.project).map(
