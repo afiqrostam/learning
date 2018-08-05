@@ -1,4 +1,5 @@
 var init;
+var def={};
 get_alert({id:'feed_load',type:'secondary',msg:'loading data.',feed:true});
 if(window.location.host.includes('googleusercontent')){
   google.script.run.withSuccessHandler(
