@@ -1,5 +1,10 @@
+function array_unique(arr){
+	tm=[];
+	arr.forEach(function(e){if(tm.indexOf(e)==-1){tm.push(e)}});
+	return tm}
+
 function get_alert(e){
-  if(e!=undefined){
+ if(e!=undefined){
     var alert=$('<div id="'+e.id+'" class="alert alert-'+e.type+' alert-dismissible fade show" role="alert">').append(
       $('<strong>').html('!!! ')).append(e.msg);
     if(e.feed){
@@ -13,20 +18,17 @@ function get_ready(){
   google.script.run.withSuccessHandler(
     function(e,f){
     if(e.s){
-      init.sp.settings.ranges.map(function(a){return a.name}).forEach(
-        function(a,b){f[a]=get_2D(e.res[b].values)});
+      init.sp.settings.ranges.map(function(a){return a.name}).forEach(function(a,b){f[a]=get_2D(e.res[b].values)});
       console.timeEnd(f.f_n);
       delete f.f_n;
-      get_alert({id:'feed_success',type:'primary',msg:'load data..success',feed:true});
-    }
+      get_alert({id:'feed_success',type:'primary',msg:'load data..success',feed:true})}
     else{
       console.log(e.con);
       console.timeEnd(f.f_n);
       delete f.f_n;
-      get_alert({id:'feed_fail',type:'danger',msg:'load data..fail',feed:true});
-    }}).withUserObject(def).get_batch_data_list({
-    sheet_id:init.sp.settings.id,
-    sheet_range:init.sp.settings.ranges.map(function(e){return e.sheet})})}
+      get_alert({id:'feed_fail',type:'danger',msg:'load data..fail',feed:true})}}).withUserObject(def).get_batch_data_list({
+		sheet_id:init.sp.settings.id,
+		sheet_range:init.sp.settings.ranges.map(function(e){return e.sheet})})}
 
 function get_2D(dt){
   console.time(arguments.callee.name);
