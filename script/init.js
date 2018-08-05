@@ -1,23 +1,18 @@
 var init;
 var def={};
-get_alert({id:'feed_load',type:'secondary',msg:'initialising..',feed:true});
 console.time('init');
 if(window.location.host.includes('googleusercontent')){
   google.script.run.withSuccessHandler(
     function(e){
       if(e.s){
-        get_alert({id:'feed_success',type:'primary',msg:'initialising..success',feed:true});
         console.timeEnd('init');
-        $('#feed_success').on('closed.bs.alert',function(){
-          init=e.res;
-          get_alert({id:'feed_load',type:'secondary',msg:'load data..',feed:true});
-          get_ready();
-        })}
+        init=e.res;
+        get_ready()}
       else{
-        get_alert({id:'feed_fail',type:'danger',msg:'initialising..fail',feed:true});
         console.timeEnd('init');
-        $('#feed_fail').on('closed.bs.alert',function(){$('#main').addClass('show')})}}).get_var('init')}
+        $('#main_loader').modal('hide');
+        $('#main_loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}}).get_var('init')}
 else{
-  get_alert({id:'feed_fail',type:'danger',msg:'initialising..fail',feed:true});
   console.timeEnd('init');
-  $('#feed_fail').on('closed.bs.alert',function(){$('#main').addClass('show')})}
+  $('#main_loader').modal('hide');
+  $('#main_loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}
