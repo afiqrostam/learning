@@ -8,7 +8,6 @@ if(window.location.host.includes('googleusercontent')){
         get_alert({id:'feed_success',type:'primary',msg:'initialising..success',feed:true});
         $('#feed_success').on('closed.bs.alert',function(){
           init=e.res;
-          $('#main').addClass('show');
           get_alert({id:'feed_load',type:'secondary',msg:'load data..',feed:true});
           get_ready();
         })}
