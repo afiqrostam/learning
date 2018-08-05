@@ -19,18 +19,18 @@ function get_ready(){
     function(e,f){
     if(e.s){
       init.sp.settings.ranges.forEach(function(a,b){f[a.name]=get_2D(e.res[b].values,a)});
-			init_bu();
+	    init_bu();
 			init_project();
-      console.timeEnd(f.f_n);
-      delete f.f_n;
-      get_alert({id:'feed_success',type:'primary',msg:'load data..success',feed:true});
-      $('#feed_success').on('closed.bs.alert',function(){$('#main').addClass('show')})}
+	    console.timeEnd(f.f_n);
+	    delete f.f_n;
+	    $('#main_loader').modal('hide');
+	    $('#main_loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}
     else{
       console.log(e.con);
       console.timeEnd(f.f_n);
       delete f.f_n;
-      get_alert({id:'feed_fail',type:'danger',msg:'load data..fail',feed:true});
-    $('#feed_fail').on('closed.bs.alert',function(){$('#main').addClass('show')})}}).withUserObject(def).get_batch_data_list({
+	    $('#main_loader').modal('hide');
+	    $('#main_loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}}).withUserObject(def).get_batch_data_list({
 		sheet_id:init.sp.settings.id,
 		sheet_range:init.sp.settings.ranges.map(function(e){return e.sheet})})}
 
