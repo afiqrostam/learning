@@ -1,6 +1,9 @@
 function init_bu(){
 	console.time(arguments.callee.name);
-	Object.getOwnPropertyNames(def.bu).forEach(function(e){def.bu[e].has_child=get_bu_child(e)});
+	Object.getOwnPropertyNames(def.bu).forEach(
+		function(e){
+			def.bu[e].has_child=get_bu_child(e);
+			def.bu[e].add_project=get_bu_project(e)});
 	console.timeEnd(arguments.callee.name)}
 
 function get_bu_region(){
@@ -18,30 +21,70 @@ function get_bu_child(id){
     console.error('invalid ID type');
     console.timeEnd(arguments.callee.name);
     return false}
+  else if(def.bu[id]==undefined){
+    console.error('invalid ID');
+    console.timeEnd(arguments.callee.name);
+    return false}
   else{
-    var find_bu=Object.getOwnPropertyNames(def.bu).filter(
-      function(e){return def.bu[e].root==id}).map(
-        function(e){return def.bu[e]});
-    var find_project=Object.getOwnPropertyNames(def.project).filter(
-      function(e){return def.project[e].root.split(',').indexOf(id)!=-1}).map(
-        function(e){return def.project[e]});
-    if(find_bu.length!=0&&find_project.length!=0){
-      console.timeEnd(arguments.callee.name);
-      return find_bu.concat(find_project)}
-    else if(find_bu.length!=0){
-      console.timeEnd(arguments.callee.name);
-      return find_bu}
-    else if(find_project.length!=0){
-      console.timeEnd(arguments.callee.name);
-      return find_project}
-    else{
-      console.error('no futher child found');
-      console.timeEnd(arguments.callee.name);
-      return false}}}
+	  if(def.bu[id].has_child!=undefined){console.timeEnd(arguments.callee.name);return def.bu[id].has_child}
+		else{
+        var find_bu=Object.getOwnPropertyNames(def.bu).filter(
+          function(e){return def.bu[e].root==id}).map(
+            function(e){return def.bu[e]});
+        var find_project=Object.getOwnPropertyNames(def.project).filter(
+          function(e){return def.project[e].root.split(',').indexOf(id)!=-1}).map(
+            function(e){return def.project[e]});
+        if(find_bu.length!=0&&find_project.length!=0){
+          console.timeEnd(arguments.callee.name);
+          return find_bu.concat(find_project)}
+        else if(find_bu.length!=0){
+          console.timeEnd(arguments.callee.name);
+          return find_bu}
+        else if(find_project.length!=0){
+          console.timeEnd(arguments.callee.name);
+          return find_project}
+        else{
+          console.error('no futher child found');
+          console.timeEnd(arguments.callee.name);
+          return false}}}}
+
+function get_bu_project(id){
+  console.time(arguments.callee.name);
+  if(id==undefined){
+    console.error('ID not defined');
+    console.timeEnd(arguments.callee.name);
+    return false}
+  else if(id.substr(0,1)!='B'){
+    console.error('invalid ID type');
+    console.timeEnd(arguments.callee.name);
+    return false}
+  else if(def.bu[id]==undefined){
+    console.error('invalid ID');
+    console.timeEnd(arguments.callee.name);
+    return false}
+  else{
+		var find=def.bu[id];
+		if(find.add_project!=undefined){
+			console.timeEnd(arguments.callee.name);
+			return find.add_project}
+		else{
+        if(find.country!=undefined){var country=[find.country]}else{var country=[]}
+        while(find.root!=undefined){
+            find=def.bu[find.root];
+            if(find.country!=undefined){country.push(find.country)}}
+        if(country.length==0){
+            console.error('no country found');
+            console.timeEnd(arguments.callee.name);
+            return false}
+        else if(country.length>1){
+            console.error('unexpected outcome');
+            console.timeEnd(arguments.callee.name);
+            return false}
+        else{console.timeEnd(arguments.callee.name);return country[0]}}}}
 
 function init_project(){
 	console.time(arguments.callee.name);
-	Object.getOwnPropertyNames(def.project).forEach(function(e){get_project_country(e)});
+	Object.getOwnPropertyNames(def.project).forEach(function(e){def.project[e].country=get_project_country(e)});
 	console.timeEnd(arguments.callee.name)}
          
 function get_country_current(){
@@ -97,6 +140,5 @@ else{
 			console.error('country not found');
 			return false}
 		else{
-      def.project[id].country=trim[0];
       console.timeEnd(arguments.callee.name);
-      return def.project[id].country}}}}
+      return trim[0]}}}}
