@@ -18,10 +18,9 @@ function get_ready(){
   google.script.run.withSuccessHandler(
     function(e,f){
     if(e.s){
-      init.sp.settings.ranges.forEach(function(a,b){
-        f[a.name]=get_2D(e.res[b].values,a);
-        if(a.name=='bu'){init_bu()}
-        else if(a.name=='project'){init_project()}});
+      init.sp.settings.ranges.forEach(function(a,b){f[a.name]=get_2D(e.res[b].values,a)});
+			init_bu();
+			init_project();
       console.timeEnd(f.f_n);
       delete f.f_n;
       get_alert({id:'feed_success',type:'primary',msg:'load data..success',feed:true});
