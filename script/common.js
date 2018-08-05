@@ -38,7 +38,11 @@ function get_2D(dt,st){
   var hd=dt.shift();
   dt.forEach(function(z){
     var ip={};
-    z.map(function(y,x){if(y!=""){if(hd[x]=="status"){return ip[hd[x]]=parseInt(y,10)}else{return ip[hd[x]]=y}}});
+    z.map(function(y,x){if(y!=""){
+			if(hd[x]=="status"){return ip[hd[x]]=parseInt(y,10)}
+			else{
+				if(!st.trunc){return ip[hd[x]]=y}
+				else{if(hd[x]!='username'&&hd[x]!='timestamp'){return ip[hd[x]]=y}}}}});
     if(st.name=='project'){
 			var root=ip.root.split(',');
 			var find_root=root.filter(function(f){return def.bu[f].country!=undefined});
