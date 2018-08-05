@@ -1,6 +1,7 @@
 var init;
 var def={};
 console.time('init');
+$('#main-loader').modal('show');
 if(window.location.host.includes('googleusercontent')){
   google.script.run.withSuccessHandler(
     function(e){
