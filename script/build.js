@@ -2,6 +2,7 @@ $('#form-modal').on('hidden.bs.modal',function(){
   var modal=$(this);
   modal.find('p.modal-title').html('&nbsp;');
   modal.find('div.modal-body').html('&nbsp;')});
+$('.nav-item>a[data-toggle="modal"]').on('click',build_user_registration)
   
 function build_user_registration(){
   var modal=$('#form-modal');
