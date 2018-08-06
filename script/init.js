@@ -11,9 +11,7 @@ if(window.location.host.includes('googleusercontent')){
         get_ready()}
       else{
         console.timeEnd('init');
-        $('#main-loader').modal('hide');
-        $('#main-loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}}).get_var('init')}
+        $('#main-loader').modal('hide')}}).get_var('init')}
 else{
   console.timeEnd('init');
-  $('#main-loader').modal('hide');
-  $('#main-loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}
+  $('#main-loader').modal('hide')}
