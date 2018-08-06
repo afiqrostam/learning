@@ -12,6 +12,8 @@ function get_alert(e){
       setTimeout(function(){alert.alert('close')},500,alert)}
     else{return alert}}}
 
+$('#main-loader').on('hidden.bs.modal',function(){$('#main').show()})
+
 function get_ready(){
   def.f_n=arguments.callee.name;
   console.time(def.f_n);
@@ -23,14 +25,12 @@ function get_ready(){
 			init_project();
 	    console.timeEnd(f.f_n);
 	    delete f.f_n;
-	    $('#main-loader').modal('hide');
-	    $('#main-loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}
+	    $('#main-loader').modal('hide')}
     else{
       console.log(e.con);
       console.timeEnd(f.f_n);
       delete f.f_n;
-	    $('#main-loader').modal('hide');
-	    $('#main-loader').on('hidden.bs.modal',function(){$('#main').addClass('show')})}}).withUserObject(def).get_batch_data_list({
+	    $('#main-loader').modal('hide')}}).withUserObject(def).get_batch_data_list({
 		sheet_id:init.sp.settings.id,
 		sheet_range:init.sp.settings.ranges.map(function(e){return e.sheet})})}
 
