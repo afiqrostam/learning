@@ -23,29 +23,32 @@
         </div>
       </div>
     </div>
+    <div class="modal bg-light" tabindex="-1" role="dialog" id="form-modal" data-backdrop="static" data-keyboard="false" 
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content font-weight-light">
+          <div class="modal-header text-light bg-dark"><p class="modal-title lead">&nbsp;</p></div>
+          <div class="modal-body">&nbsp;</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-dark">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white">
       <div class="navbar-brand media">
         <img class="align-self-center mr-3" src="https://afiqrostam.github.io/learning/ISIA128.png" 
              alt="Generic placeholder image" style="width:32px">
-        <div class="media-body">
-          <h4 class="text-uppercase font-weight-light m-0 p-0">I See I Act</h4>
-        </div>
+        <div class="media-body"><h4 class="text-uppercase font-weight-light m-0 p-0">I See I Act</h4></div>
       </div>
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"data-target="#nav-side-bar" aria-controls="nav-side-bar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span></button>
+      <div class="navbar-collapse collapse" id="nav-side-bar" style="">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
+          <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+          <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -57,48 +60,40 @@
         </ul>
       </div>
     </nav>
-    
-    <main class="container-fluid m-0 p-0">
-      <div class="container-fluid mt-5">
-        <div class="row">
-          <div class="d-none d-sm-none d-md-block d-lg-block col-md-1 col-lg-2">&nbsp;</div>
-          <div class="col">
-            <div id="feed">&nbsp;</div>
-            <div id="main" style="display: none;">
-              <div class="jumbotron font-weight-light">
-                <h4>Hi ISIA Users,</h4>
-                <p>Please be informed that we will be temporarily disabling the ISIA site from&nbsp;
-                  <strong>Fri Apr 27 2018 12:30:00 GMT+0800</strong>&nbsp;
-                  to allow us to migrate the existing data into the new version of ISIA.</p>
-                <p>Despite of several major changes had been made; the looks and main&nbsp;
-                  functions of the application in the new site remains (with some exception of minor changes).</p>
-                <p>Take notice that there will be minor tweak in the profile section. If necessary,&nbsp;
-                  kindly make changes once the new site is published. If you’re unsure about which&nbsp;
-                  organization  you belong to, kindly contact your local HR or send an email to us. We’re&nbsp;
-                  happy to assist you.</p>
-                <p>For the registered users in the Middle East and Europe, your data may not be ready&nbsp;
-                  when the new site is published.  Rest assured, your existing data are still intact. Once&nbsp;
-                  we have finalized your organization structure, we will update the data into the new site&nbsp;
-                  and notify you accordingly.</p>
-                <p>Some of the update includes:</p>
-                <ul>
-                  <li>Accessibility of to submissions for all users.</li>
-                  <li>Multiples photos attachment when submitting submission.</li>
-                  <li>Intuitive report builder.</li>
-                  <li>Recent location tracking for submissions.</li></ul>
-                <p>On another note, all previous generated links from the email notification are no longer&nbsp;
-                  usable. Therefore, you will need to go to the site to make any update on the previous submissions. </p>
-                <p>The site is expected to be up and running again on&nbsp;
-                  <strong>Wed May 2 2018 21:00:00 GMT+0800</strong>.</p>
-                <p>Apologies for all the inconvenience caused.</p>
-                <p class="text-right">
-                  <img src="https://afiqrostam.github.io/icons/always%20safe3.png" alt="always safe" style="display: inline-block;max-height: 24px;vertical-align: middle">&nbsp;
-                  <img src="https://afiqrostam.github.io/icons/logo%2096.png" alt="aiming for zero accident" style="display: inline-block;vertical-align: middle">
-                </p>
-              </div>
+    <div class="p-5">&nbsp;</div>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-xl-8 ">
+          <div class="jumbotron font-weight-light">
+            <h1 class="display-3">Updates</h1>
+            <h4>Hi ISIA Users,</h4>
+            <p>Please be informed that we will be temporarily disabling the ISIA site from&nbsp;<strong>Fri Apr 27 2018 12:30:00 GMT+0800</strong>&nbsp;to allow us to migrate the existing data into the new version of ISIA.</p>
+            <p>Despite of several major changes had been made; the looks and main&nbsp;functions of the application in the new site remains (with some exception of minor changes).</p>
+            <p>Take notice that there will be minor tweak in the profile section. If necessary,&nbsp;kindly make changes once the new site is published. If you’re unsure about which&nbsp;organization  you belong to, kindly contact your local HR or send an email to us. We’re&nbsp;happy to assist you.</p>
+            <p>For the registered users in the Middle East and Europe, your data may not be ready&nbsp;when the new site is published.  Rest assured, your existing data are still intact. Once&nbsp;we have finalized your organization structure, we will update the data into the new site&nbsp;and notify you accordingly.</p>
+            <p>Some of the update includes:</p>
+            <ul>
+              <li>Accessibility of to submissions for all users.</li>
+              <li>Multiples photos attachment when submitting submission.</li>
+              <li>Intuitive report builder.</li>
+              <li>Recent location tracking for submissions.</li></ul>
+            <p>On another note, all previous generated links from the email notification are no longer&nbsp;usable. Therefore, you will need to go to the site to make any update on the previous submissions. </p>
+            <p>The site is expected to be up and running again on&nbsp;<strong>Wed May 2 2018 21:00:00 GMT+0800</strong>.</p>
+            <p>Apologies for all the inconvenience caused.</p>
+            <p class="text-right">
+              <img src="https://afiqrostam.github.io/icons/always%20safe3.png" alt="always safe" style="display: inline-block;max-height: 24px;vertical-align: middle">&nbsp;
+              <img src="https://afiqrostam.github.io/icons/logo%2096.png" alt="aiming for zero accident" style="display: inline-block;vertical-align: middle">
+            </p>
+          </div>
+        </div>
+        <div class="col order-first order-sm-last">
+          <div class="jumbotron bg-dark text-light rounded">
+            <div class="container">
+              <h1 class="display-4 font-italic mb-5">Welcome back, Afiq Rostam!</h1>
+              <p class="lead">I see I Act (ISIA) is designed to encourage the staff at all levels to participate in H&amp;S management at the workplace; by acting on all unsafe acts and unsafe conditions that come into notice, right before unintended incident could happen.</p>
+              <p><button class="btn btn-outline-light btn-lg font-weight-light" type="button" data-toggle="modal" data-target="#form-modal">New Submission »</button></p>
             </div>
           </div>
-          <div class="d-none d-sm-none d-md-block d-lg-block col-md-1 col-lg-2">&nbsp;</div>
         </div>
       </div>
     </main>
@@ -108,6 +103,7 @@
       integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://afiqrostam.github.io/learning/script/build.js"></script>
     <script src="https://afiqrostam.github.io/learning/script/db.js"></script>
     <script src="https://afiqrostam.github.io/learning/script/common.js"></script>
     <script src="https://afiqrostam.github.io/learning/script/init.js"></script>
