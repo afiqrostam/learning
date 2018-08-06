@@ -38,7 +38,7 @@ function build_bu_list_disabled(){
 	    var bu=res.filter(function(e){return e.id.substr(0,1)=='B'});
       var pro=res.filter(function(e){return e.id.substr(0,1)=='P'});
       var child=$('<select class="form-control mb-1 text-uppercase">').html(
-		    $('<option>').val('').html('.organization')).on('change',bu_list);
+		    $('<option>').val('').html('.organization')).on('change select',build_bu_list_disabled);
       if(bu.length!=0){
 		    var bl=bu.filter(function(e){return e.country==undefined});
 		    if(bl.length!=0){
