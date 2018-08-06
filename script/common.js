@@ -12,7 +12,8 @@ function get_alert(e){
       setTimeout(function(){alert.alert('close')},500,alert)}
     else{return alert}}}
 
-$('#main-loader').on('hidden.bs.modal',function(){$('#main').show()})
+$('.modal').on('show.bs.modal',function(){$('main').hide()});
+$('.modal').on('hidden.bs.modal',function(){$('main').show()});
 
 function get_ready(){
   def.f_n=arguments.callee.name;
