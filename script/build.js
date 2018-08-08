@@ -70,28 +70,26 @@ function build_bu_list(x){
 				var child=$('<select class="form-control mb-1 text-lowercase">').html(
 					$('<option>').val('').html('.organization')).on('change select',function(){build_bu_list({t:$(this),p:param})});
 				if(bu.length!=0){
-					var bl=bu.filter(function(e){return e.country==undefined});
-					if(bl.length!=0){
-						var group=$('<optgroup label=".business line/unit">');
-						if(param.select_disable){
-							bl.forEach(function(e){group.append($('<option>').val(e.id).html(e.bu))})}
-						else if(param.show_disabled){
-							bl.forEach(function(e){group.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))})}
-						else{
-							bl.filter(function(e){return e.status==1}).forEach(
-								function(e){group.append($('<option>').val(e.id).html(e.bu))})}
-						child.append(group)}
-					var cu=bu.filter(function(e){return e.country!=undefined});
-					if(cu.length!=0){
-						var group=$('<optgroup label=".country">');
-						if(param.select_disable){
-							cu.forEach(function(e){group.append($('<option>').val(e.id).html(def.country[e.country].country))})}
-						else if(param.show_disabled){
-							cu.forEach(function(e){group.append($('<option>').val(e.id).html(def.country[e.country].country).prop('disabled',!e.status))})}
-						else{
-							cu.filter(function(e){return e.status==1}).forEach(
-								function(e){group.append($('<option>').val(e.id).html(def.country[e.country].country))})}
-						child.append(group)}}
+					var bl=$('<optgroup label=".business line/unit">');
+					var cu=$('<optgroup label=".country">');
+					if(param.select_disable){
+						bu.forEach(function(e){
+							if(e.country==undefined){
+								bl.append($('<option>').val(e.id).html(e.bu))}
+							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country))}})}
+					else if(param.show_disabled){
+						bu.forEach(function(e){
+							if(e.country==undefined){
+								bl.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))}
+							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country).prop('disabled',!e.status))}})}
+					else{
+						bu.filter(function(e){return e.status==1}).forEach(function(e){
+							if(e.country==undefined){
+								bl.append($('<option>').val(e.id).html(e.bu))}
+							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country))}})}
+
+					if(bl.children().length!=0){child.append(bl)}
+					if(cu.children().length!=0){child.append(cu)}}
 				if(pro.length!=0){
 					var pro_group=$('<optgroup label=".office/project">');
 					if(param.select_disable){
