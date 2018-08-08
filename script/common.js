@@ -65,3 +65,12 @@ function get_2D(dt,st){
         lt[ip[st.key]]=ip});
     console.timeEnd(arguments.callee.name);
     return lt}
+
+function get_employee_registration(email){
+	console.time(arguments.callee.name);
+	if(email==undefined){console.error('email not defined');console.timeEnd(arguments.callee.name);return false}
+	else{
+		var find=Object.getOwnPropertyNames(def.employee).filter(function(e){return def.employee[e].email==email});
+		if(find.length==0){console.error('user not registered');console.timeEnd(arguments.callee.name);return false}
+		else{console.timeEnd(arguments.callee.name);return find.map(function(e){return def.employee[e]})[0]}}}
+
