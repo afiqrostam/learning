@@ -1,4 +1,4 @@
-var init;
+var init={};
 var def={};
 console.time('init');
 $('#main-loader').modal('show');
