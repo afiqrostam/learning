@@ -73,4 +73,3 @@ function get_employee_registration(email){
 		var find=Object.getOwnPropertyNames(def.employee).filter(function(e){return def.employee[e].email==email});
 		if(find.length==0){console.error('user not registered');console.timeEnd(arguments.callee.name);return false}
 		else{console.timeEnd(arguments.callee.name);return find.map(function(e){return def.employee[e]})[0]}}}
-
