@@ -15,6 +15,21 @@ function get_alert(e){
 $('.modal').on('show.bs.modal',function(){$('main').hide()});
 $('.modal').on('hidden.bs.modal',function(){$('main').show()});
 
+function get_init(){
+	if($('#main-loader').css('display')=='none'){
+		$('#main-loader').modal('show')}
+    var f=arguments.callee.name;
+	console.time(f);
+    google.script.run.withSuccessHandler(
+        function(e,f){
+          if(e.s){
+            init=e.res;
+			console.timeEnd(f);
+            get_ready()}
+          else{
+            console.timeEnd(f);
+            $('#main-loader').modal('hide')}}).withUserObject(f).get_var('init')}
+
 function get_ready(){
   def.f_n=arguments.callee.name;
   console.time(def.f_n);
@@ -26,14 +41,33 @@ function get_ready(){
 			init_project();
 	    console.timeEnd(f.f_n);
 	    delete f.f_n;
-	    $('#main-loader').modal('hide')}
+	    get_employees()}
     else{
       console.log(e.con);
       console.timeEnd(f.f_n);
       delete f.f_n;
 	    $('#main-loader').modal('hide')}}).withUserObject(def).get_batch_data_list({
 		sheet_id:init.sp.settings.id,
-		sheet_range:init.sp.settings.ranges.map(function(e){return e.sheet})})}
+		sheet_range:init.sp.settings.ranges.map(function(e){return e.sheet+'!'+e.range})})}
+
+function get_employees(){
+  def.f_n=arguments.callee.name;
+  console.time(def.f_n);
+  google.script.run.withSuccessHandler(
+    function(e,f){
+    if(e.s){
+	  console.log(e);
+      init.sp.employee.ranges.forEach(function(a,b){f[a.name]=get_2D(e.res,a)});
+      console.timeEnd(f.f_n);
+      delete f.f_n;
+      $('#main-loader').modal('hide')}
+    else{
+      console.log(e.con);
+      console.timeEnd(f.f_n);
+      delete f.f_n;
+	    $('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
+		sheet_id:init.sp.employee.id,
+		sheet_name:init.sp.employee.ranges.map(function(e){return e.sheet})[0]})}
 
 function get_2D(dt,st){
   console.time(arguments.callee.name);
