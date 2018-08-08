@@ -30,7 +30,9 @@ function get_ready(){
   google.script.run.withSuccessHandler(
     function(e,f){
     if(e.s){
-      init.sp.settings.ranges.forEach(function(a,b){f[a.name]=get_2D(e.res[b].values,a)});
+      init.sp.settings.ranges.forEach(function(a,b){
+				a.header=$.extend(true,[],e.res[b].values[0]);
+				f[a.name]=get_2D(e.res[b].values,a)});
 	    init_bu();init_project();console.timeEnd(f.f_n);delete f.f_n;get_employees()}
     else{
       console.log(e.con);console.timeEnd(f.f_n);delete f.f_n;
@@ -43,13 +45,15 @@ function get_employees(){
   google.script.run.withSuccessHandler(
     function(e,f){
     if(e.s){
-      init.sp.employee.ranges.forEach(function(a,b){f[a.name]=get_2D(e.res,a)});
+      init.sp.employee.ranges.forEach(function(a){
+				a.header=$.extend(true,[],e.res[0]);
+				f[a.name]=get_2D(e.res,a)});
       console.timeEnd(f.f_n);delete f.f_n;$('#main-loader').modal('hide')}
     else{
       console.log(e.con);console.timeEnd(f.f_n);delete f.f_n;
 	    $('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
 		sheet_id:init.sp.employee.id,
-		sheet_name:init.sp.employee.ranges.map(function(e){return e.sheet})[0]})}
+		sheet_name:init.sp.employee.ranges.map(function(e){return e.sheet+'!'+e.range})[0]})}
 
 function get_2D(dt,st){
   console.time(arguments.callee.name);
