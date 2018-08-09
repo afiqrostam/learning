@@ -193,4 +193,3 @@ function post_announcement(){
     sheet_id:init.sp.news.id,
     sheet_name:init.sp.news.ranges[0].sheet,
     input:input})}
-
