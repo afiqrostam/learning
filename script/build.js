@@ -7,7 +7,22 @@ $('#form-modal').on('show.bs.modal',function(){
   var modal=$(this);
   modal.find('div.modal-footer').html(
 		$('<button type="button" class="btn btn-secondary" data-dismiss="modal">').html('close'))});
-$('.nav-item>a[data-toggle="modal"]').on('click',build_user_registration)
+$('.nav-item>a[data-toggle="modal"]').on('click',build_user_registration);
+
+function build_user_profile(){
+	var user=get_employee_registration(init.us.email);
+	var profile=$('.profile-status');
+	profile.empty();
+	if(!user){profile.append('&nbsp;')}
+	else{
+		profile.append(
+			$('<span class="lead my-0 mr-3 p-0 text-capitalize">').html(user.employee));
+		if(init.us.photo!=undefined){
+			var image=$('<img class="rounded-circle d-none d-xl-inline" alt="profile-photo" style="width:32px">');
+            profile.append(image)
+			image[0].src=init.us.photo}
+	else{profile.append($('<span class="my-0 d-none d-xl-inline-block">').html('<i class="fas fa-2x fa-user-circle"></i>'))}}}
+
   
 function build_user_registration(){
   var modal=$('#form-modal');
