@@ -144,9 +144,7 @@ function display_update(e,i){
 	var entry=$('<div class="mb-5">').data('count',i);
 	entry.append(
 		$('<p class="lead m-0">').html(e.type+':'));
-	e.content.split('\n').forEach(
-		function(f){
-			entry.append($('<p class="">').html(f))});
+	entry.append(e.content);
 	entry.append($('<p class="mb-3">').html(
 		$('<small class="font-italic">').html(
 			get_employee_registration(e.username).employee+' on '+new Date(e.timestamp))));
