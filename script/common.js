@@ -21,7 +21,8 @@ function get_init(){
 	google.script.run.withSuccessHandler(
 		function(e,f){
 			if(e.s){
-				init=e.res;console.timeEnd(f);get_ready()
+				init=e.res;console.timeEnd(f);get_ready();
+				google.script.run.withSuccessHandler(function(e){if(e.s){init.us.photo=e.res[0].photo}}).get_users(init.us.email);
 				google.script.url.getLocation(function(g){Object.getOwnPropertyNames(g).forEach(function(h){init.we.param[h]=g[h]})})}
 			else{console.timeEnd(f);$('#main-loader').modal('hide')}}).withUserObject(f).get_var('init')}
 
