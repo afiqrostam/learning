@@ -6,7 +6,7 @@ $('#form-modal').on('hidden.bs.modal',function(){
 $('#form-modal').on('show.bs.modal',function(){
   var modal=$(this);
   modal.find('div.modal-footer').html(
-		$('<button type="button" class="btn btn-secondary" data-dismiss="modal">').html('close'))});
+		$('<button type="button" class="btn btn-outline-dark" data-dismiss="modal">').html('close'))});
 $('.nav-item>a[data-toggle="modal"]').on('click',build_user_registration);
 
 function build_user_profile(){
