@@ -3,6 +3,10 @@ $('#form-modal').on('hidden.bs.modal',function(){
   modal.find('p.modal-title').html('&nbsp;');
   modal.find('div.modal-body').html('&nbsp;');
   modal.find('div.modal-footer').html('&nbsp;')});
+$('#form-modal').on('show.bs.modal',function(){
+  var modal=$(this);
+  modal.find('div.modal-footer').html(
+		$('<button type="button" class="btn btn-secondary" data-dismiss="modal">').html('close'))});
 $('.nav-item>a[data-toggle="modal"]').on('click',build_user_registration)
   
 function build_user_registration(){
@@ -66,64 +70,54 @@ function build_bu_list(x){
 				if(val.substr(0,1)!='P'){
 					t.after($('<p class="text-danger">').html($('<small>').html('office has not be set in this organization.')))}}
 			else{
-				var bu=res.filter(function(e){return e.id.substr(0,1)=='B'});
-				var pro=res.filter(function(e){return e.id.substr(0,1)=='P'});
 				var child=$('<select class="form-control mb-1 text-lowercase">').html(
 					$('<option>').val('').html('.organization')).on('change select',function(){build_bu_list({t:$(this),p:param})});
-				if(bu.length!=0){
-					var bl=$('<optgroup label=".business line/unit">');
-					var cu=$('<optgroup label=".country">');
-					if(param.select_disable){
-						bu.forEach(function(e){
-							if(e.country==undefined){
-								bl.append($('<option>').val(e.id).html(e.bu))}
-							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country))}})}
-					else if(param.show_disabled){
-						bu.forEach(function(e){
-							if(e.country==undefined){
-								bl.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))}
-							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country).prop('disabled',!e.status))}})}
-					else{
-						bu.filter(function(e){return e.status==1}).forEach(function(e){
-							if(e.country==undefined){
-								bl.append($('<option>').val(e.id).html(e.bu))}
-							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country))}})}
-
-					if(bl.children().length!=0){child.append(bl)}
-					if(cu.children().length!=0){child.append(cu)}}
-				if(pro.length!=0){
-					var pro_group=$('<optgroup label=".office/project">');
-					if(param.select_disable){
-						pro.forEach(function(e){pro_group.append($('<option>').val(e.id).html(e.project))})}
-					else if(param.show_disabled){
-						pro.forEach(function(e){pro_group.append($('<option>').val(e.id).html(e.project).prop('disabled',!e.status))})}
-					else{
-						pro.filter(function(e){return e.status==1}).forEach(
-							function(e){pro_group.append($('<option>').val(e.id).html(e.project))})}
-					child.append(pro_group)}
+				var bl=$('<optgroup label=".business line/unit">');
+				var cu=$('<optgroup label=".country">');
+				var pr=$('<optgroup label=".office/project">');
+				if(param.select_disable){
+					res.forEach(function(e){
+						if(e.id.substr(0,1)=='B'){
+							if(e.country==undefined){bl.append($('<option>').val(e.id).html(e.bu))}
+							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country))}}
+						else{pr.append($('<option>').val(e.id).html(e.project))}})}
+				else if(param.show_disabled){
+					res.forEach(function(e){
+						if(e.id.substr(0,1)=='B'){
+							if(e.country==undefined){bl.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))}
+							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country).prop('disabled',!e.status))}}
+						else{pr.append($('<option>').val(e.id).html(e.project).prop('disabled',!e.status))}})}
+				else{
+					res.filter(function(e){return e.status==1}).forEach(function(e){
+						if(e.id.substr(0,1)=='B'){
+							if(e.country==undefined){bl.append($('<option>').val(e.id).html(e.bu))}
+							else{cu.append($('<option>').val(e.id).html(def.country[e.country].country))}}
+						else{pr.append($('<option>').val(e.id).html(e.project))}})}
+				if(bl.children().length!=0){child.append(bl)}
+				if(cu.children().length!=0){child.append(cu)}
+				if(pr.children().length!=0){child.append(pr)}
+				if(child.children().length==2){
+					child.children('option').html(child.children('optgroup').attr('label'));
+					child.children('optgroup').children().each(function(){child.append($(this))});
+					child.children('optgroup').remove()}
 				t.after(child)}}}
 	else{
 		if(t.siblings().not('p.help-block').length==0){
 			if(t.children().length>1){t.children().first().siblings().remove()}
-		if(param.select_disable){
-			get_bu_region().forEach(function(e){t.append($('<option>').val(e.id).html(e.bu))})}
-		else if(param.show_disabled){
-			get_bu_region().forEach(function(e){t.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))})}
-		else{
-			get_bu_region().filter(function(e){return e.status==1}).forEach(
-				function(e){t.append($('<option>').val(e.id).html(e.bu))})}}}}
+		if(param.select_disable){get_bu_region().forEach(function(e){t.append($('<option>').val(e.id).html(e.bu))})}
+		else if(param.show_disabled){get_bu_region().forEach(function(e){t.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))})}
+		else{get_bu_region().filter(function(e){return e.status==1}).forEach(function(e){t.append($('<option>').val(e.id).html(e.bu))})}}}}
 
 function build_side_container(){
 	var block=$('<div class="col order-first order-lg-last">').html(
-		$('<div class="jumbotron bg-dark rounded">').html(
-			$('<div class="container text-right text-light">')));
+		$('<div class="container mb-1 p-3 bg-dark rounded text-right text-light">'));
 	var des="I see I Act (ISIA) is designed to encourage the staff at all levels to participate in H&S management at the workplace; by acting on all unsafe acts and unsafe conditions that come into notice, right before unintended incident could happen.";
 	var user=get_employee_registration(init.us.email);
 	var button=$('<button class="btn btn-outline-light btn-lg font-weight-light" type="button" data-toggle="modal" data-target="#form-modal">');
 	if(!user){var user_welcome='Hi there!';button.html('sign up »').on('click',build_user_registration)}
 	else{var user_welcome='Welcome back, '+user.employee+'!';button.html('new submission »')}
 	var container=block.find('div.container');
-	container.html($('<p class="h1 font-weight-light mb-5">').html(user_welcome));
-	container.append($('<p class="text-justify lead mb-5">').html(des));
-	container.append($('<p class="mb-5">').html(button))
+	container.html($('<p class="h2 pt-5 font-weight-light">').html(user_welcome));
+	container.append($('<p class="text-justify lead">').html(des));
+	container.append($('<p class="pt-3">').html(button))
 	return block}
