@@ -91,8 +91,9 @@ function get_employees(){
 			function(e){return e.sheet+'!'+e.range})[0]})}
 
 function get_news(){
-  def.f_n=arguments.callee.name;
-	console.time(def.f_n);
+  var f=arguments.callee.name;
+	def[arguments.callee.name]={}
+	console.time(f);
   google.script.run.withSuccessHandler(
     function(e,f){
 			if(e.s){
