@@ -44,7 +44,7 @@ function get_init(){
 
 function get_ready(){
   var f=arguments.callee.name;
-	def[arguments.callee.name]={}
+	def.q[arguments.callee.name]={}
 	console.time(f);
   google.script.run.withSuccessHandler(
     function(e,f){
@@ -69,7 +69,7 @@ function get_ready(){
 
 function get_employees(){
   var f=arguments.callee.name;
-	def[arguments.callee.name]={}
+	def.q[arguments.callee.name]={}
 	console.time(f);
   google.script.run.withSuccessHandler(
     function(e,f){
@@ -77,7 +77,7 @@ function get_employees(){
 				init.sp.employee.ranges.forEach(
 					function(a){
 						a.header=$.extend(true,[],e.res[0]);
-						f[a.name]=get_2D(e.res,a)});
+						def[a.name]=get_2D(e.res,a)});
 				console.timeEnd(f);
 				delete def.q[f];
 				q_check()}
@@ -92,7 +92,7 @@ function get_employees(){
 
 function get_news(){
   var f=arguments.callee.name;
-	def[arguments.callee.name]={}
+	def.q[arguments.callee.name]={}
 	console.time(f);
   google.script.run.withSuccessHandler(
     function(e,f){
@@ -100,7 +100,7 @@ function get_news(){
 				init.sp.news.ranges.forEach(
 					function(a){
 						a.header=$.extend(true,[],e.res[0]);
-						f[a.name]=get_2D(e.res,a)});
+						def[a.name]=get_2D(e.res,a)});
 				console.timeEnd(f);
 				delete def.q[f];
 				q_check()}
