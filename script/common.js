@@ -47,7 +47,7 @@ function get_employees(){
     function(e,f){
     if(e.s){
       init.sp.employee.ranges.forEach(function(a){a.header=$.extend(true,[],e.res[0]);f[a.name]=get_2D(e.res,a)});
-      page_home();console.timeEnd(f.f_n);delete f.f_n;get_news()}
+      console.timeEnd(f.f_n);delete f.f_n;get_news()}
     else{
       console.log(e.con);console.timeEnd(f.f_n);delete f.f_n;
 	    $('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
@@ -60,6 +60,7 @@ function get_news(){
     function(e,f){
     if(e.s){
       init.sp.news.ranges.forEach(function(a){a.header=$.extend(true,[],e.res[0]);f[a.name]=get_2D(e.res,a)});
+			page_home();display_update(def.news[def.news.length-1],def.news.length-1);
       console.timeEnd(f.f_n);delete f.f_n;$('#main-loader').modal('hide')}
     else{
       console.log(e.con);console.timeEnd(f.f_n);delete f.f_n;
@@ -69,18 +70,43 @@ function get_news(){
 
 function get_2D(dt,st){
   console.time(arguments.callee.name);
-  var lt={};
-  var hd=dt.shift();
-  dt.forEach(function(z){
-    var ip={};
-    z.map(function(y,x){if(y!=""){
+  if(st.key!=undefined){var lt={}}
+	else{var lt=[]}
+	var hd=dt.shift();
+	dt.forEach(function(z){
+		var ip={};
+		z.map(function(y,x){if(y!=""){
 			if(hd[x]=="status"){return ip[hd[x]]=parseInt(y,10)}
 			else{
 				if(!st.trunc){return ip[hd[x]]=y}
 				else{if(hd[x]!='username'&&hd[x]!='timestamp'){return ip[hd[x]]=y}}}}});
-        lt[ip[st.key]]=ip});
-    console.timeEnd(arguments.callee.name);
-    return lt}
+		if(st.key!=undefined){lt[ip[st.key]]=ip}
+		else{lt.push(ip)}});
+	console.timeEnd(arguments.callee.name);
+	return lt}
+
+function display_update(e,i){
+	var entry=$('<div class="mb-5">').data('count',i);
+	entry.append($('<p class="lead m-0">').html(e.type+':'));
+	e.content.split('\n').forEach(function(f){entry.append($('<p class="">').html(f))});
+	entry.append(
+		$('<p class="mb-3">').html(
+			$('<small class="font-italic">').html(
+				get_employee_registration(e.username).employee+' on '+new Date(e.timestamp))));
+	var nav=$('<p>').html('&nbsp');
+	var prev=$('<button class="btn mr-3 btn-sm btn-outline-dark">').html('Previous').on('click',function(){
+				var i=$('.update-content').find('div').data('count');
+				var e=def.news[i+1];
+				display_update(e,i+1)});
+	var next=$('<button class="btn float-right mr-3 btn-sm btn-outline-dark">').html('Next').on('click',function(){
+				var i=$('.update-content').find('div').data('count');
+				var e=def.news[i-1];
+				display_update(e,i-1)})
+	if(def.news.length-1==i){nav.append(next)}
+	else if(i==0){nav.append(prev)}
+	else{nav.append(prev).append(next)}
+	entry.append(nav)
+	$('.update-content').html(entry)}
 
 function get_employee_registration(email){
 	console.time(arguments.callee.name);
