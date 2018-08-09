@@ -49,7 +49,7 @@ function get_employees(){
       init.sp.employee.ranges.forEach(function(a){
 				a.header=$.extend(true,[],e.res[0]);
 				f[a.name]=get_2D(e.res,a)});
-      console.timeEnd(f.f_n);delete f.f_n;$('#main-loader').modal('hide')}
+      page_home();console.timeEnd(f.f_n);delete f.f_n;$('#main-loader').modal('hide')}
     else{
       console.log(e.con);console.timeEnd(f.f_n);delete f.f_n;
 	    $('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
