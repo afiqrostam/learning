@@ -114,7 +114,7 @@ function get_news(){
 			function(e){return e.sheet+'!'+e.range})[0]})}
 
 function q_check(){
-	if(def.q.keys.length==0){
+	if(def.q.keys==undefined){
 		page_home();
 		display_update(def.news[def.news.length-1],def.news.length-1);
 		$('#main-loader').modal('hide')}}
