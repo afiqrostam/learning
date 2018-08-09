@@ -136,3 +136,64 @@ function build_side_container(){
 	container.append($('<p class="text-justify lead">').html(des));
 	container.append($('<p class="pt-3">').html(button))
 	return block}
+
+function build_announcement(){
+  var modal=$('#form-modal');
+  var form=$('<form>');
+  var message=$('<div class="form-group row">').append(
+	  $('<label for="announce-message" class="col-xl-12 col-form-label">').html('Message')).append(
+	  $('<div class="col-xl-12">').append(
+	    $('<textarea rows="10" class="form-control" id="announce-message" placeholder="An mea esse nostrud. Ea dico nulla errem nec, eu quando reprimique eam. Affert postulant qui cu, cu sea everti eruditi, cum primis maluisset referrentur eu. Probo aliquid pri at, ne detraxit definiebas est. Eu maluisset definiebas contentiones eum, nec ad persecuti theophrastus. Ne ubique feugait accumsan vel, tota falli id cum, cu nostrud delectus phaedrum ius." name="content">')));
+  var type=$('<div class="form-group row">').append(
+	  $('<label for="announce-type" class="col-md-3 col-form-label">').html('Type')).append(
+	  $('<div class="col-md-9">').append(
+	    $('<select class="form-control mb-1 text-lowercase" id="announce-type" name="type">').append(
+			$('<option>').html('changelog')).append($('<option>').html('news'))));
+  modal.find('p.modal-title').html('New Post');
+  modal.find('div.modal-body').html(form.append(type).append(message))
+  modal.find('div.modal-footer').append(
+	$('<button type="button" class="btn btn-dark">').html('post').on('click',post_announcement))}
+
+function post_announcement(){
+  var modal=$('#form-modal');
+  var form=modal.find('form');
+  form.hide()
+  modal.find('div.modal-footer').hide();
+  form.before($('<p style="min-height:400px">').append('posting..'))
+  var data={};
+  form.serializeArray().forEach(function(e){data[e.name]=e.value});
+  var input=init.sp.news.ranges[0].header.filter(
+    function(e){return e!='timestamp'&&e!='username'}).map(
+      function(e){if(data[e]!=undefined){return data[e]}else{return ''}});
+  google.script.run.withSuccessHandler(
+    function(e){
+      var modal=$('#form-modal');
+      var p=modal.find('.modal-body').find('p');
+      if(e.s){
+		p.append('success!');
+        modal.find('form').remove();
+        modal.find('div.modal-footer').find('.btn-dark').remove();
+        p.append('<br>updating content..');
+        google.script.run.withSuccessHandler(
+          function(e,f){
+            var modal=$('#form-modal');
+            var p=modal.find('.modal-body').find('p');
+            if(e.s){
+              init.sp.news.ranges.forEach(function(a){a.header=$.extend(true,[],e.res[0]);f[a.name]=get_2D(e.res,a)});
+			  display_update(def.news[def.news.length-1],def.news.length-1);
+              p.append('success!');
+              modal.find('div.modal-footer').show()}
+            else{
+			  p.append('failed!');
+			  modal.find('div.modal-footer').show()}}).withUserObject(def).get_data_list({
+          sheet_id:init.sp.news.id,
+          sheet_name:init.sp.news.ranges.map(function(e){return e.sheet+'!'+e.range})[0]})}
+      else{
+		p.append('failed!');
+		p.attr('style','')
+		modal.find('form').show();
+		modal.find('div.modal-footer').show()}}).post_data_list({
+    sheet_id:init.sp.news.id,
+    sheet_name:init.sp.news.ranges[0].sheet,
+    input:input})}
+
