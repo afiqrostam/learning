@@ -16,7 +16,7 @@ $('.modal').on('show.bs.modal',function(){$('main').hide()});
 $('.modal').on('hidden.bs.modal',function(){$('main').show()});
 
 function get_init(){
-	def={};
+	def={q:{}};
 	init={};
 	var f=arguments.callee.name;
 	console.time(f);
@@ -28,6 +28,8 @@ function get_init(){
 				init=e.res;
 				console.timeEnd(f);
 				get_ready();
+				get_employees();
+				get_news();
 				google.script.run.withSuccessHandler(
 					function(g){
 						if(g.s){
@@ -41,32 +43,34 @@ function get_init(){
 				$('#main-loader').modal('hide')}}).withUserObject(f).get_var('init')}
 
 function get_ready(){
-  def.f_n=arguments.callee.name;
-	console.time(def.f_n);
+  var f=arguments.callee.name;
+	def[arguments.callee.name]={}
+	console.time(f);
   google.script.run.withSuccessHandler(
     function(e,f){
 			if(e.s){
 				init.sp.settings.ranges.forEach(
 					function(a,b){
 						a.header=$.extend(true,[],e.res[b].values[0]);
-						f[a.name]=get_2D(e.res[b].values,a)});
+						def[a.name]=get_2D(e.res[b].values,a)});
 				init_bu();
 				init_project();
-				console.timeEnd(f.f_n);
-				delete f.f_n;
-				get_employees()}
+				console.timeEnd(f);
+				delete def.q[f];
+				q_check()}
     else{
 			console.log(e.con);
-			console.timeEnd(f.f_n);
-			delete f.f_n;
-	    $('#main-loader').modal('hide')}}).withUserObject(def).get_batch_data_list({
+			console.timeEnd(f);
+			delete def.q[f];
+			q_check()}}).withUserObject(f).get_batch_data_list({
 		sheet_id:init.sp.settings.id,
 		sheet_range:init.sp.settings.ranges.map(
 			function(e){return e.sheet+'!'+e.range})})}
 
 function get_employees(){
-  def.f_n=arguments.callee.name;
-	console.time(def.f_n);
+  var f=arguments.callee.name;
+	def[arguments.callee.name]={}
+	console.time(f);
   google.script.run.withSuccessHandler(
     function(e,f){
 			if(e.s){
@@ -74,14 +78,14 @@ function get_employees(){
 					function(a){
 						a.header=$.extend(true,[],e.res[0]);
 						f[a.name]=get_2D(e.res,a)});
-				console.timeEnd(f.f_n);
-				delete f.f_n;
-				get_news()}
+				console.timeEnd(f);
+				delete def.q[f];
+				q_check()}
     else{
 			console.log(e.con);
-			console.timeEnd(f.f_n);
-			delete f.f_n;
-	    $('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
+			console.timeEnd(f);
+			delete def.q[f];
+			q_check()}}).withUserObject(f).get_data_list({
 		sheet_id:init.sp.employee.id,
 		sheet_name:init.sp.employee.ranges.map(
 			function(e){return e.sheet+'!'+e.range})[0]})}
@@ -96,19 +100,23 @@ function get_news(){
 					function(a){
 						a.header=$.extend(true,[],e.res[0]);
 						f[a.name]=get_2D(e.res,a)});
-				page_home();
-				display_update(def.news[def.news.length-1],def.news.length-1);
-				console.timeEnd(f.f_n);
-				delete f.f_n;
-				$('#main-loader').modal('hide')}
+				console.timeEnd(f);
+				delete def.q[f];
+				q_check()}
 			else{
 				console.log(e.con);
-				console.timeEnd(f.f_n);
-				delete f.f_n;
-				$('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
+				console.timeEnd(f);
+				delete def.q[f];
+				q_check()}}).withUserObject(f).get_data_list({
 		sheet_id:init.sp.news.id,
 		sheet_name:init.sp.news.ranges.map(
 			function(e){return e.sheet+'!'+e.range})[0]})}
+
+function q_check(){
+	if(def.q.keys.length==0){
+		page_home();
+		display_update(def.news[def.news.length-1],def.news.length-1);
+		$('#main-loader').modal('hide')}}
 
 function get_2D(dt,st){
 	var hd=dt.shift();
