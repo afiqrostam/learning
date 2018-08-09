@@ -140,7 +140,7 @@ function build_announcement(){
   var message=$('<div class="form-group row">').append(
 	  $('<label for="announce-message" class="col-xl-12 col-form-label">').html('Message')).append(
 	  $('<div class="col-xl-12">').append(
-	    $('<textarea rows="10" class="form-control" id="announce-message" placeholder="An mea esse nostrud. Ea dico nulla errem nec, eu quando reprimique eam. Affert postulant qui cu, cu sea everti eruditi, cum primis maluisset referrentur eu. Probo aliquid pri at, ne detraxit definiebas est. Eu maluisset definiebas contentiones eum, nec ad persecuti theophrastus. Ne ubique feugait accumsan vel, tota falli id cum, cu nostrud delectus phaedrum ius." name="content">')));
+	    $('<textarea rows="10" class="form-control" id="announce-message" name="content">')));
   var type=$('<div class="form-group row">').append(
 	  $('<label for="announce-type" class="col-md-3 col-form-label">').html('Type')).append(
 	  $('<div class="col-md-9">').append(
@@ -148,6 +148,17 @@ function build_announcement(){
 			$('<option>').html('changelog')).append($('<option>').html('news'))));
   modal.find('p.modal-title').html('New Post');
   modal.find('div.modal-body').html(form.append(type).append(message))
+  $('#announce-message').summernote({
+	dialogsInBody: true,
+	disableDragAndDrop: true,
+	shortcuts: false,
+	toolbar: 
+		[['style', ['bold', 'italic', 'underline']],
+		 ['font', ['strikethrough', 'superscript', 'subscript']],
+		 ['para', ['ul', 'ol', 'paragraph','style']]],
+	placeholder:"An mea esse nostrud. Ea dico nulla errem nec, eu quando reprimique eam. Affert postulant qui cu, cu sea everti eruditi, cum primis maluisset referrentur eu. Probo aliquid pri at, ne detraxit definiebas est. Eu maluisset definiebas contentiones eum, nec ad persecuti theophrastus. Ne ubique feugait accumsan vel, tota falli id cum, cu nostrud delectus phaedrum ius."});
+  $('#announce-message').summernote('insertParagraph');
+  $('#announce-message').summernote('formatPara');
   modal.find('div.modal-footer').append(
 	$('<button type="button" class="btn btn-dark">').html('post').on('click',post_announcement))}
 
