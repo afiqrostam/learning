@@ -46,15 +46,26 @@ function get_employees(){
   google.script.run.withSuccessHandler(
     function(e,f){
     if(e.s){
-      init.sp.employee.ranges.forEach(function(a){
-				a.header=$.extend(true,[],e.res[0]);
-				f[a.name]=get_2D(e.res,a)});
-      page_home();console.timeEnd(f.f_n);delete f.f_n;$('#main-loader').modal('hide')}
+      init.sp.employee.ranges.forEach(function(a){a.header=$.extend(true,[],e.res[0]);f[a.name]=get_2D(e.res,a)});
+      page_home();console.timeEnd(f.f_n);delete f.f_n;get_news()}
     else{
       console.log(e.con);console.timeEnd(f.f_n);delete f.f_n;
 	    $('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
 		sheet_id:init.sp.employee.id,
 		sheet_name:init.sp.employee.ranges.map(function(e){return e.sheet+'!'+e.range})[0]})}
+
+function get_news(){
+  def.f_n=arguments.callee.name;console.time(def.f_n);
+  google.script.run.withSuccessHandler(
+    function(e,f){
+    if(e.s){
+      init.sp.news.ranges.forEach(function(a){a.header=$.extend(true,[],e.res[0]);f[a.name]=get_2D(e.res,a)});
+      console.timeEnd(f.f_n);delete f.f_n;$('#main-loader').modal('hide')}
+    else{
+      console.log(e.con);console.timeEnd(f.f_n);delete f.f_n;
+	    $('#main-loader').modal('hide')}}).withUserObject(def).get_data_list({
+		sheet_id:init.sp.news.id,
+		sheet_name:init.sp.news.ranges.map(function(e){return e.sheet+'!'+e.range})[0]})}
 
 function get_2D(dt,st){
   console.time(arguments.callee.name);
