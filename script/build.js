@@ -123,7 +123,7 @@ function build_bu_list(x){
 
 function build_side_container(){
 	var block=$('<div class="col order-first order-lg-last">').html(
-		$('<div class="container mb-1 p-3 bg-dark rounded text-right text-light">'));
+		$('<div class="container mb-3 p-3 bg-dark rounded text-right text-light">'));
 	var des="I see I Act (ISIA) is designed to encourage the staff at all levels to participate in H&S management at the workplace; by acting on all unsafe acts and unsafe conditions that come into notice, right before unintended incident could happen.";
 	var user=get_employee_registration(init.us.email);
 	var button=$('<button class="btn btn-outline-light btn-lg font-weight-light" type="button" data-toggle="modal" data-target="#form-modal">');
