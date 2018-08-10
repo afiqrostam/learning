@@ -160,8 +160,6 @@ function build_announcement(){
 		 ['font', ['strikethrough', 'superscript', 'subscript']],
 		 ['para', ['ul', 'ol', 'paragraph','style']]],
 	placeholder:"An mea esse nostrud. Ea dico nulla errem nec, eu quando reprimique eam. Affert postulant qui cu, cu sea everti eruditi, cum primis maluisset referrentur eu. Probo aliquid pri at, ne detraxit definiebas est. Eu maluisset definiebas contentiones eum, nec ad persecuti theophrastus. Ne ubique feugait accumsan vel, tota falli id cum, cu nostrud delectus phaedrum ius."});
-  box.summernote('insertParagraph');
-  box.summernote('formatPara');
   modal.find('div.modal-footer').append(
 	$('<button type="button" class="btn btn-dark">').html('post').on('click',post_announcement))}
 
