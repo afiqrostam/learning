@@ -1,5 +1,6 @@
 $('#form-modal').on('hidden.bs.modal',function(){
   var modal=$(this);
+	modal.find('div.modal-dialog').removeClass('modal-lg');
   modal.find('p.modal-title').html('&nbsp;');
   modal.find('div.modal-body').html('&nbsp;');
   modal.find('div.modal-footer').html(
@@ -137,17 +138,19 @@ function build_side_container(){
 function build_announcement(){
   var modal=$('#form-modal');
   var form=$('<form>');
-  var message=$('<div class="form-group row">').append(
+	modal.find('div.modal-dialog').addClass('modal-lg');
+  var message=$('<div class="form-row">').append(
 	  $('<label for="announce-message" class="col-xl-12 col-form-label">').html('Message')).append(
 	  $('<div class="col-xl-12">').append(
 	    $('<textarea rows="10" class="form-control" id="announce-message" name="content">')));
-  var type=$('<div class="form-group row">').append(
-	  $('<label for="announce-type" class="col-md-3 col-form-label">').html('Type')).append(
-	  $('<div class="col-md-9">').append(
-	    $('<select class="form-control mb-1 text-lowercase" id="announce-type" name="type">').append(
-			$('<option>').html('changelog')).append($('<option>').html('news'))));
+  var type=$('<div class="form-row">').append(
+		$('<div class="col-lg-6 form-group">').append(
+			$('<label for="announce-type">').html('Type')).append(
+			$('<select class="form-control mb-1 text-lowercase" id="announce-type" name="type">').append(
+				$('<option>').html('changelog')).append(
+				$('<option>').html('news'))));
   modal.find('p.modal-title').html('New Post');
-  modal.find('div.modal-body').html(form.append(type).append(message))
+  modal.find('div.modal-body').html(form.append(type).append(message));
   $('#announce-message').summernote({
 	dialogsInBody: true,
 	disableDragAndDrop: true,
