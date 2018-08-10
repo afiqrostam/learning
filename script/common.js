@@ -2,7 +2,8 @@ $('.modal').on('show.bs.modal',function(){$('main').hide()});
 $('.modal').on('hidden.bs.modal',function(){$('main').show()});
 
 function array_unique(a){t=[];a.forEach(function(e){if(t.indexOf(e)==-1){t.push(e)}});return t}
-function get_init(){def={q:{}};init={};var f=arguments.callee.name;console.time(f);
+function get_init(){
+	def={q:{}};init={};var f=arguments.callee.name;console.time(f);
 	if($('#main-loader').css('display')=='none'){$('#main-loader').modal('show')}
 	google.script.run.withSuccessHandler(
 		function(e,f){if(e.s){init=e.res;console.timeEnd(f);get_ready();get_employees();get_news();
