@@ -114,19 +114,19 @@ function display_update(e,i){
 	entry.append(
 		$('<p class="lead m-0">').html(e.type+':').append(
 		$('<div class="dropleft float-right">').html(
-			$('<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="set" data-toggle="dropdown">')).append(
-			$('<div class="dropdown-menu mr-1" aria-labelledby="set">').html(
-				$('<a class="dropdown-item" data-toggle="modal" data-target="#form-modal" href="" role="button">').html('update')
-					.on('click',function(){build_announcement($(this).parents('div.mb-5').data('count'))})))));
+			$('<button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="set" data-toggle="dropdown">')).append(
+			$('<div class="dropdown-menu bg-dark" aria-labelledby="set">').html(
+				$('<a class="dropdown-item text-light" data-toggle="modal" data-target="#form-modal" href="" role="button">').data('count',i).html('update')
+					.on('click',function(){build_announcement($(this).data('count'))})))));
 	entry.append(e.content);
 	entry.append($('<p class="mb-3">').html(
 		$('<small class="font-italic">').html(
 			get_employee_registration(e.username).employee+' on '+new Date(e.timestamp))));
 	var nav=$('<p>').html('&nbsp');
-	var prev=$('<button class="btn mr-3 btn-sm btn-outline-dark">').html('Previous').on('click',function(){
-				var i=$('.update-content').find('div').data('count');var e=def.news[i+1];display_update(e,i+1)});
-	var next=$('<button class="btn float-right mr-3 btn-sm btn-outline-dark">').html('Next').on('click',function(){
-				var i=$('.update-content').find('div').data('count');var e=def.news[i-1];display_update(e,i-1)})
+	var prev=$('<button class="btn mr-3 btn-sm btn-dark">').html('Previous').on('click',function(){
+		var i=$('.update-content').find('div').data('count');var e=def.news[i+1];display_update(e,i+1)});
+	var next=$('<button class="btn float-right mr-3 btn-sm btn-dark">').html('Next').on('click',function(){
+		var i=$('.update-content').find('div').data('count');var e=def.news[i-1];display_update(e,i-1)})
 	if(def.news.length-1==i){nav.append(next)}else if(i==0){nav.append(prev)}else{nav.append(prev).append(next)}
 	if(def.news.length>1){entry.append(nav)}
 	$('.update-content').html(entry)}
