@@ -121,20 +121,6 @@ function build_bu_list(x){
 		else if(param.show_disabled){get_bu_region().forEach(function(e){t.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))})}
 		else{get_bu_region().filter(function(e){return e.status==1}).forEach(function(e){t.append($('<option>').val(e.id).html(e.bu))})}}}}
 
-function build_side_container(){
-	var block=$('<div class="col order-first order-lg-last">').html(
-		$('<div class="container mb-3 p-3 bg-dark rounded text-right text-light">'));
-	var des="I see I Act (ISIA) is designed to encourage the staff at all levels to participate in H&S management at the workplace; by acting on all unsafe acts and unsafe conditions that come into notice, right before unintended incident could happen.";
-	var user=get_employee_registration(init.us.email);
-	var button=$('<button class="btn btn-outline-light btn-lg font-weight-light" type="button" data-toggle="modal" data-target="#form-modal">');
-	if(!user){var user_welcome='Hi there!';button.html('sign up »').on('click',build_user_registration)}
-	else{var user_welcome='Welcome back, '+user.employee+'!';button.html('new submission »')}
-	var container=block.find('div.container');
-	container.html($('<p class="h2 pt-5 font-weight-light">').html(user_welcome));
-	container.append($('<p class="text-justify lead">').html(des));
-	container.append($('<p class="pt-3">').html(button))
-	return block}
-
 function build_announcement(e){
   var modal=$('#form-modal');
   var form=$('<form>');
@@ -149,6 +135,7 @@ function build_announcement(e){
 			$('<select class="form-control mb-1 text-lowercase" id="announce-type" name="type">').append(
 				$('<option>').html('changelog')).append(
 				$('<option>').html('news'))));
+  var process=$('<button type="button" class="btn btn-dark">').html('post');
   modal.find('p.modal-title').html('New Post');
   modal.find('div.modal-body').html(form.append(type).append(message));
   box.summernote({
@@ -159,12 +146,12 @@ function build_announcement(e){
 		[['style', ['bold', 'italic', 'underline']],
 		 ['font', ['strikethrough', 'superscript', 'subscript']],
 		 ['para', ['ul', 'ol', 'paragraph','style']]],
-	placeholder:"An mea esse nostrud. Ea dico nulla errem nec, eu quando reprimique eam. Affert postulant qui cu, cu sea everti eruditi, cum primis maluisset referrentur eu. Probo aliquid pri at, ne detraxit definiebas est. Eu maluisset definiebas contentiones eum, nec ad persecuti theophrastus. Ne ubique feugait accumsan vel, tota falli id cum, cu nostrud delectus phaedrum ius."});
-  modal.find('div.modal-footer').append(
-	$('<button type="button" class="btn btn-dark">').html('post').on('click',post_announcement))
+	placeholder:"your updates"});
+  modal.find('div.modal-footer').append(process.on('click',post_announcement))
 	if(e!=undefined){
-		type.find('select').val(def.news[e].type);
-		box.summernote}}
+		type.find('select').val(def.news[e].type).after($('<input type="hidden" name="r">').val(def.news[e].r));
+		box.summernote('code',def.news[e].content);
+		process.off().on('click',update_announcement)}}
 
 function post_announcement(){
   var modal=$('#form-modal');
@@ -182,20 +169,54 @@ function post_announcement(){
       var modal=$('#form-modal');
       var p=modal.find('.modal-body').find('p');
       if(e.s){
-				p.append('success!');
+        p.append('success!');
         modal.find('form').remove();
         modal.find('div.modal-footer').find('.btn-dark').remove();
         p.append('<br>updating content..');
-				var s={r:e.res};
-				init.sp.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
-				def.news.push(s);
+        var s={r:e.res};
+        init.sp.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
+        def.news.push(s);
         p.append('success!');
         modal.find('div.modal-footer').show()}
       else{
-				p.append('failed!');
-				p.attr('style','')
-				modal.find('form').show();
-				modal.find('div.modal-footer').show()}}).post_data_list({
+        p.append('failed!');
+        p.attr('style','')
+        modal.find('form').show();
+        modal.find('div.modal-footer').show()}}).post_data_list({
     sheet_id:init.sp.news.id,
     sheet_name:init.sp.news.ranges[0].sheet,
+    input:input})}
+
+function update_announcement(){
+  var modal=$('#form-modal');
+  var form=modal.find('form');
+  form.hide()
+  modal.find('div.modal-footer').hide();
+  form.before($('<p style="min-height:400px">').append('posting..'))
+  var data={};
+  form.serializeArray().forEach(function(e){data[e.name]=e.value});
+  var input=init.sp.news.ranges[0].header.filter(
+    function(e){return e!='timestamp'&&e!='username'}).map(
+      function(e){if(data[e]!=undefined){return data[e]}else{return ''}});
+  google.script.run.withSuccessHandler(
+    function(e){
+      var modal=$('#form-modal');
+      var p=modal.find('.modal-body').find('p');
+      if(e.s){console.log(e)
+        p.append('success!');
+        modal.find('form').remove();
+        modal.find('div.modal-footer').find('.btn-dark').remove();
+        p.append('<br>updating content..');
+        var s={r:e.res};
+        init.sp.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
+        def.news[e.res]=s;
+        p.append('success!');
+        modal.find('div.modal-footer').show()}
+      else{
+        p.append('failed!');
+        p.attr('style','')
+        modal.find('form').show();
+        modal.find('div.modal-footer').show()}}).update_data_list({
+    sheet_id:init.sp.news.id,
+    sheet_name:init.sp.news.ranges[0].sheet+'!'+data.r+':'+data.r,
     input:input})}
