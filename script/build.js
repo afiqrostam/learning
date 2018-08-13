@@ -187,7 +187,7 @@ function post_announcement(){
         modal.find('div.modal-footer').find('.btn-dark').remove();
         p.append('<br>updating content..');
 				var s={r:e.res};
-				init.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
+				init.sp.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
 				def.news.push(s);
         p.append('success!');
         modal.find('div.modal-footer').show()}
