@@ -34,7 +34,7 @@ function get_ready(){
 			q_check()}}).withUserObject(f).get_batch_data_list({
 		sheet_id:init.sp.settings.id,
 		sheet_range:init.sp.settings.ranges.map(
-			function(e){return e.sheet)})}
+			function(e){return e.sheet})}
 
 function get_employees(){
   var f=arguments.callee.name;
