@@ -223,7 +223,7 @@ function update_announcement(){
         p.append('<br>updating content..');
         var s={r:e.res};
         init.sp.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
-        def.news[e.res]=s;
+        def.news[e.res-2]=s;
         p.append('success!');
         modal.find('div.modal-footer').show()}
       else{
