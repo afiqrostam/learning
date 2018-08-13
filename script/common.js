@@ -80,7 +80,7 @@ function get_news(){
 				q_check()}}).withUserObject(f).get_data_list({
 		sheet_id:init.sp.news.id,
 		sheet_name:init.sp.news.ranges.map(
-			function(e){return e.sheet)[0]})}
+			function(e){return e.sheet})[0]})}
 
 function q_check(){
 	if(Object.keys(def.q).length==0){
