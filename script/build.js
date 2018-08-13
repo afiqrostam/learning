@@ -191,7 +191,8 @@ function post_announcement(){
         init.sp.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
         def.news.push(s);
         p.append('success!');
-        modal.find('div.modal-footer').show()}
+        modal.find('div.modal-footer').show();
+	display_update(def.news[def.news.length-1],def.news.length-1)}
       else{
         p.append('failed!');
         p.attr('style','')
@@ -225,7 +226,8 @@ function update_announcement(){
         init.sp.news.ranges[0].header.forEach(function(j,k){if(e.con.input!=""){s[j]=e.con.input[k]}});
         def.news[e.res-2]=s;
         p.append('success!');
-        modal.find('div.modal-footer').show()}
+        modal.find('div.modal-footer').show();
+	display_update(def.news[e.res-2],e.res-2);}
       else{
         p.append('failed!');
         p.attr('style','')
