@@ -121,6 +121,20 @@ function build_bu_list(x){
 		else if(param.show_disabled){get_bu_region().forEach(function(e){t.append($('<option>').val(e.id).html(e.bu).prop('disabled',!e.status))})}
 		else{get_bu_region().filter(function(e){return e.status==1}).forEach(function(e){t.append($('<option>').val(e.id).html(e.bu))})}}}}
 
+function build_side_container(){
+	var block=$('<div class="col order-first order-lg-last">').html(
+		$('<div class="container mb-3 p-3 bg-dark rounded text-right text-light">'));
+	var des="I see I Act (ISIA) is designed to encourage the staff at all levels to participate in H&S management at the workplace; by acting on all unsafe acts and unsafe conditions that come into notice, right before unintended incident could happen.";
+	var user=get_employee_registration(init.us.email);
+	var button=$('<button class="btn btn-outline-light btn-lg font-weight-light" type="button" data-toggle="modal" data-target="#form-modal">');
+	if(!user){var user_welcome='Hi there!';button.html('sign up »').on('click',build_user_registration)}
+	else{var user_welcome='Welcome back, '+user.employee+'!';button.html('new submission »')}
+	var container=block.find('div.container');
+	container.html($('<p class="h2 pt-5 font-weight-light">').html(user_welcome));
+	container.append($('<p class="text-justify lead">').html(des));
+	container.append($('<p class="pt-3">').html(button))
+	return block}
+
 function build_announcement(e){
   var modal=$('#form-modal');
   var form=$('<form>');
