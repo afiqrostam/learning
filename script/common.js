@@ -112,7 +112,12 @@ function get_2D(dt,st){
 function display_update(e,i){
 	var entry=$('<div class="mb-5">').data('count',i);
 	entry.append(
-		$('<p class="lead m-0">').html(e.type+':'));
+		$('<p class="lead m-0">').html(e.type+':').append(
+		$('<div class="dropleft float-right">').html(
+			$('<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="set" data-toggle="dropdown">')).append(
+			$('<div class="dropdown-menu mr-1" aria-labelledby="set">').html(
+				$('<a class="dropdown-item" data-toggle="modal" data-target="#form-modal" href="" role="button">').html('update')
+					.on('click',function(){build_announcement($(this).parents('div.mb-5').data('count'))})))));
 	entry.append(e.content);
 	entry.append($('<p class="mb-3">').html(
 		$('<small class="font-italic">').html(
