@@ -2,7 +2,8 @@ var init={};
 var def={};
 
 function get_nav(){
-  $('.nav-link:contains("Home")').on('click',page_home)}
+  $('.nav-link:contains("Home")').on('click',
+    function(e){e.preventDefault();page_home()})}
 
 console.time('init');
 $('#main-loader').modal('show');
