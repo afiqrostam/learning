@@ -5,7 +5,6 @@ $('#form-modal').on('hidden.bs.modal',function(){
   modal.find('div.modal-body').html('&nbsp;');
   modal.find('div.modal-footer').html(
 	$('<button type="button" class="btn btn-outline-dark" data-dismiss="modal">').html('close'))});
-$('.nav-item>a[data-toggle="modal"]').on('click',build_user_registration);
 
 function build_user_profile(){
 	var user=get_employee_registration(init.us.email);
