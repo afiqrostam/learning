@@ -1,4 +1,5 @@
-function page_home(){
+function page_home(e){
+	e.preventDefault();
   $('main').html(
     $('<div class="row">').html(
       $('<div class="col-lg-8 ">').html(
@@ -13,4 +14,6 @@ function page_home(){
               '&nbsp;').append('&nbsp;').append(
               $('<img src="https://afiqrostam.github.io/icons/logo%2096.png" alt="aiming for zero accident" style="max-height: 64px">')))))).append(
             build_side_container()));
-	build_user_profile()}
+	build_user_profile()
+
+		display_update(def.news[def.news.length-1],def.news.length-1)}
