@@ -1,22 +1,6 @@
 var init={};
 var def={};
 
-function get_nav(){
-  google.script.history.setChangeHandler(function (e) {
-    if(e.location.hash!=''){
-      if(e.location.hash=="home"){page_home()}}
-      if(e.location.hash=="announcement"){page_announcement()}});
-  $('.nav-link:contains("Home")').on('click',
-    function(e){
-      e.preventDefault();
-      google.script.history.push({timestamp:new Date().getTime()},{page:'index'},'home');
-      page_home()});
-  $('.dropdown-item:contains("Announcement")').on('click',
-    function(e){
-      e.preventDefault();
-      google.script.history.push({timestamp:new Date().getTime()},{page:'index'},'announcement');
-      page_announcement()})}
-
 console.time('init');
 $('#main-loader').modal('show');
 if(window.location.host.includes('googleusercontent')){
