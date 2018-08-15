@@ -16,8 +16,7 @@ function display_update(e,i){
 	if(def.news.length>1){entry.append(nav)}
 	$('.update-content').html(entry)}
 
-function page_home(e){
-	e.preventDefault();
+function page_home(){
   $('main').html(
     $('<div class="row">').html(
       $('<div class="col-lg-8 ">').html(
@@ -62,8 +61,7 @@ function show_announcement(e,i){
 		else{nav.html(prev).append(next)}}
 	else{nav.html('&nbsp;')}}
 
-function page_announcement(e){
-  e.preventDefault();
+function page_announcement(){
 	$('main').html(
     $('<div class="row">').html(
       $('<div class="col-lg-8 my-5">').html(
