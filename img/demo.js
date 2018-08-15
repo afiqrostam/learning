@@ -111,63 +111,6 @@ $(function () {
   }
 
   // Hide URL/FileReader API requirement message in capable browsers:
-  if (window.createObjectURL || window.URL || window.webkitURL ||
-      window.FileReader) {
-    result.children().hide()
-  }
-
-  $(document)
-    .on('dragover', function (e) {
-      e.preventDefault()
-      e = e.originalEvent
-      e.dataTransfer.dropEffect = 'copy'
-    })
-    .on('drop', dropChangeHandler)
-
-  $('#file-input')
-    .on('change', dropChangeHandler)
-
-  $('#edit')
-    .on('click', function (event) {
-      event.preventDefault()
-      var imgNode = result.find('img, canvas')
-      var img = imgNode[0]
-      var pixelRatio = window.devicePixelRatio || 1
-      imgNode.Jcrop({
-        setSelect: [
-          40,
-          40,
-          (img.width / pixelRatio) - 40,
-          (img.height / pixelRatio) - 40
-        ],
-        onSelect: function (coords) {
-          coordinates = coords
-        },
-        onRelease: function () {
-          coordinates = null
-        }
-      }).parent().on('click', function (event) {
-        event.preventDefault()
-      })
-    })
-
-  $('#crop')
-    .on('click', function (event) {
-      event.preventDefault()
-      var img = result.find('img, canvas')[0]
-      var pixelRatio = window.devicePixelRatio || 1
-      if (img && coordinates) {
-        updateResults(loadImage.scale(img, {
-          left: coordinates.x * pixelRatio,
-          top: coordinates.y * pixelRatio,
-          sourceWidth: coordinates.w * pixelRatio,
-          sourceHeight: coordinates.h * pixelRatio,
-          minWidth: result.width(),
-          maxWidth: result.width(),
-          pixelRatio: pixelRatio,
-          downsamplingRatio: 0.5
-        }))
-        coordinates = null
-      }
-    })
+  if(window.createObjectURL||window.URL||window.webkitURL||window.FileReader){result.children().hide()}
+  $('#file-input').on('change', dropChangeHandler)
 })
