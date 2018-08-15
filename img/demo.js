@@ -42,3 +42,4 @@
 
   // Hide URL/FileReader API requirement message in capable browsers:
   if(window.createObjectURL||window.URL||window.webkitURL||window.FileReader){result.children().hide()}
+  $('#file-input').on('change', dropChangeHandler);
