@@ -27,6 +27,7 @@ $(function () {
     else{
       if(!href){
         href=img.toDataURL('image/jpeg',0.9)
+        img.className='img-responsive img-rounded';
         // Check if file type is supported for the dataURL export:
         dataURLStart ='data:'+currentFile.type
         if(href.slice(0,dataURLStart.length)!==dataURLStart){fileName=fileName.replace(/\.\w+$/,'.jpg')}}
