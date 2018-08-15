@@ -1,18 +1,3 @@
-/*
- * JavaScript Load Image Demo JS
- * https://github.com/blueimp/JavaScript-Load-Image
- *
- * Copyright 2013, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
- */
-
-/* global loadImage, HTMLCanvasElement, $ */
-
-$(function () {
-  'use strict'
 
   var result=$('#result')
   var currentFile
@@ -57,4 +42,3 @@ $(function () {
 
   // Hide URL/FileReader API requirement message in capable browsers:
   if(window.createObjectURL||window.URL||window.webkitURL||window.FileReader){result.children().hide()}
-  $('#file-input').on('change', dropChangeHandler)})
