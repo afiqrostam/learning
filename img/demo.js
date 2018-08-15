@@ -2,6 +2,7 @@
   var result=$('#result')
   var currentFile
   var coordinates
+  var blob
   
   function updateResults (img, data) {
     var fileName=currentFile.name
@@ -13,6 +14,7 @@
       if(!href){
         href=img.toDataURL('image/jpeg',0.9)
         img.className='img-fluid rounded';
+        blob=window.dataURLtoBlob && window.dataURLtoBlob(href);
         // Check if file type is supported for the dataURL export:
         dataURLStart ='data:'+currentFile.type
         if(href.slice(0,dataURLStart.length)!==dataURLStart){fileName=fileName.replace(/\.\w+$/,'.jpg')}}
