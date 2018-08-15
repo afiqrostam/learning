@@ -23,7 +23,6 @@ function page_home(e){
       $('<div class="col-lg-8 ">').html(
         $('<div class="jumbotron font-weight-light">').html(
           $('<div class="update-header my-2 mx-0 p-0">').html(
-            $('<button class="float-right btn btn-outline-light rounded-circle" type="button" data-toggle="modal" data-target="#form-modal">').html('+').on('click',function(){build_announcement()})).append(
 			$('<p class="display-4">').html('Updates:'))).append(
           $('<div class="update-content">').html('&nbsp;')).append(
           $('<div class="update-footer my-2 mx-0 p-0">').html(
