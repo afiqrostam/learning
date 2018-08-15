@@ -25,17 +25,11 @@ $(function () {
     var content
     if(!(img.src||img instanceof HTMLCanvasElement)){content=$('<span>Loading image file failed</span>')}
     else{
-      console.log(href)
       if(!href){
-        console.log(currentFile.type+'REMOVEME')
-        href=img.toDataURL(currentFile.type+'REMOVEME')
-        console.log(href)
+        href=img.toDataURL('image/jpeg',0.9)
         // Check if file type is supported for the dataURL export:
         dataURLStart ='data:'+currentFile.type
-        console.log(dataURLStart)
-        console.log(href.slice(0,dataURLStart.length))
-        
-        if(href.slice(0,dataURLStart.length)!==dataURLStart){fileName=fileName.replace(/\.\w+$/,'.png');console.log(fileName)}}
+        if(href.slice(0,dataURLStart.length)!==dataURLStart){fileName=fileName.replace(/\.\w+$/,'.jpg')}}
       content=$('<a target="_blank">').append(img).attr('download', fileName).attr('href',href)}
     result.children().replaceWith(content)}
 
