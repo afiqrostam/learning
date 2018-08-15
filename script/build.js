@@ -162,7 +162,9 @@ function build_announcement(e){
 	placeholder:"your updates"});
   modal.find('div.modal-footer').append(process.on('click',post_announcement))
 	if(e!=undefined){
-		type.find('select').val(def.news[e].type).after($('<input type="hidden" name="r">').val(def.news[e].r));
+		type.find('select').val(def.news[e].type).after(
+			$('<input type="hidden" name="r">').val(def.news[e].r)).after(
+			$('<input type="hidden" name="posted">').val(def.news[e].posted));
 		box.summernote('code',def.news[e].content);
 		process.off().on('click',update_announcement)}}
 
@@ -172,7 +174,7 @@ function post_announcement(){
   form.hide()
   modal.find('div.modal-footer').hide();
   form.before($('<p style="min-height:400px">').append('posting..'))
-  var data={};
+  var data={posted:'posted'};;
   form.serializeArray().forEach(function(e){data[e.name]=e.value});
   var input=init.sp.news.ranges[0].header.filter(
     function(e){return e!='timestamp'&&e!='username'}).map(
@@ -206,7 +208,7 @@ function update_announcement(){
   var form=modal.find('form');
   form.hide()
   modal.find('div.modal-footer').hide();
-  form.before($('<p style="min-height:400px">').append('posting..'))
+  form.before($('<p style="min-height:400px">').append('posting..'));
   var data={};
   form.serializeArray().forEach(function(e){data[e.name]=e.value});
   var input=init.sp.news.ranges[0].header.filter(
