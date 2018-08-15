@@ -11,7 +11,7 @@
     if(!(img.src||img instanceof HTMLCanvasElement)){content=$('<span>Loading image file failed</span>')}
     else{
       if(!href){
-        href=img.toDataURL('image/jpeg',parseFloat($('input[type="number"]').val()))
+        href=img.toDataURL('image/jpeg',0.9)
         img.className='img-fluid rounded';
         // Check if file type is supported for the dataURL export:
         dataURLStart ='data:'+currentFile.type
