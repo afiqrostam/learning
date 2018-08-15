@@ -8,6 +8,27 @@ function array_unique(a){
 			if(t.indexOf(e)==-1){t.push(e)}});
 	return t}
 
+function manage_pages(a){
+	if(a=='home'){page_home()}
+	if(a=='announcement'){page_announcement()}}
+
+function get_nav(){
+  google.script.history.setChangeHandler(function(e){
+    if(e.location.hash!=''){
+			var hash=e.location.hash;
+			manage_pages(hash)}
+		else{manage_pages('home')}});
+  $('.nav-link:contains("Home")').on('click',
+    function(e){
+      e.preventDefault();
+      google.script.history.push({timestamp:new Date().getTime()},{page:'index'},'home');
+      page_home()});
+  $('.dropdown-item:contains("Announcement")').on('click',
+    function(e){
+      e.preventDefault();
+      google.script.history.push({timestamp:new Date().getTime()},{page:'index'},'announcement');
+      page_announcement()})}
+
 function get_init(){
 	def={q:{}};
 	init={};
@@ -108,7 +129,10 @@ function get_news(){
 
 function q_check(){
 	if(Object.keys(def.q).length==0){
-		$('.nav-link:contains("Home")').trigger('click');
+		if(init.we.param.hash!=''){
+			var hash=init.we.param.hash;
+			manage_pages(hash)}
+		else{manage_pages('home')}
 		$('#main-loader').modal('hide')}}
 
 function get_2D(dt,st){
