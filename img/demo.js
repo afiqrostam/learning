@@ -44,11 +44,13 @@ $(function () {
     var target = e.dataTransfer || e.target
     var file=target && target.files && target.files[0]
     var options={
-      maxWidth: result.width(),
-      canvas: true,
-      pixelRatio: window.devicePixelRatio,
-      downsamplingRatio: 0.5,
-      orientation: true}
+      orientation: true, 
+      maxWidth: 500,
+      maxHeight: 500, 
+      canvas: true, 
+      crop:true,
+      pixelRatio: 1, 
+      downsamplingRatio: 0.01}
     if(!file){return}
     displayImage(file,options)}
 
