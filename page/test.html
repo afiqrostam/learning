@@ -9,7 +9,34 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
   </head>
   <body>
-    <main role="main" class="container">&nbsp;</main>
+    <main role="main" class="container p-3">
+      <p class="display-4">JavaScript Load Image Demo</p>
+      <p>JavaScript Load Image is a library to load images provided as File or Blob objects or via URL. It returns an optionally scaled and/or cropped HTML img or canvas element.</p>
+      <p>It also provides a method to parse image meta data to extract Exif tags and thumbnails and to restore the complete image header after resizing.</p>
+      <ul>
+          <li><a href="https://github.com/blueimp/JavaScript-Load-Image/tags">Download</a></li>
+          <li><a href="https://github.com/blueimp/JavaScript-Load-Image">Source Code</a></li>
+          <li><a href="https://github.com/blueimp/JavaScript-Load-Image/blob/master/README.md">Documentation</a></li>
+          <li><a href="test/">Test</a></li>
+          <li><a href="https://blueimp.net">© Sebastian Tschan</a></li>
+      </ul>
+      <p class="display-4">Select an image file</p>
+      <p><input type="file" id="file-input"></p>
+      <p>Or <strong>drag &amp; drop</strong> an image file onto this webpage.</p>
+      <p class="display-4">Result</p>
+      <p id="actions" style="display:none;">
+        <button type="button" id="edit">Edit</button>
+        <button type="button" id="crop">Crop</button>
+      </p>
+      <div id="result" class="result">
+          <p style="display: none;">This demo works only in browsers with support for the <a href="https://developer.mozilla.org/en/DOM/window.URL">URL</a> or <a href="https://developer.mozilla.org/en/DOM/FileReader">FileReader</a> API.</p>
+      </div>
+      <div id="exif" class="exif" style="display:none;">
+          <h2>Exif meta data</h2>
+          <p id="thumbnail" class="thumbnail" style="display:none;"></p>
+          <table></table>
+      </div>
+    </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
@@ -18,5 +45,6 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
     <script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js></script>
+    <script src="https://blueimp.github.io/JavaScript-Load-Image/demo/demo.js></script>
   </body>
 </html>
