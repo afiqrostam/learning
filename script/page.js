@@ -51,11 +51,11 @@ function show_announcement(e,i){
 		$('<div>').data('content',true).html(
 			$('<p>').html('Posted on '+new Date(e.timestamp))).append(e.content));
 	var nav=$('main').find('div.footer');
-	var prev=$('<button class="btn mr-3 btn-sm btn-dark">').html('Previous').on('click',function(){
-		var i=$('.update-content').find('div').data('count');
+	var prev=$('<button class="btn mr-3 btn-sm btn-dark">').html('Previous').data('count',i).on('click',function(){
+		var i=$(this).data('count');
 		var e=def.news[i+1];show_announcement(e,i+1)});
-	var next=$('<button class="btn float-right mr-3 btn-sm btn-dark">').html('Next').on('click',function(){
-		var i=$('.update-content').find('div').data('count');
+	var next=$('<button class="btn float-right mr-3 btn-sm btn-dark">').html('Next').data('count',i).on('click',function(){
+		var i=$(this).data('count');
 		var e=def.news[i-1];show_announcement(e,i-1)})
 	if(def.news.length-1==i){nav.html(next)}
 	else if(i==0){nav.html(prev)}
