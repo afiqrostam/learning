@@ -56,9 +56,11 @@ function show_announcement(e,i){
 	var next=$('<button class="btn float-right mr-3 btn-sm btn-dark">').html('Next').data('count',i).on('click',function(){
 		var i=$(this).data('count');
 		var e=def.news[i-1];show_announcement(e,i-1)})
-	if(def.news.length-1==i){nav.html(next)}
-	else if(i==0){nav.html(prev)}
-	else{nav.html(prev).append(next)}}
+	if(def.news.length>1){
+		if(def.news.length-1==i){nav.html(next)}
+		else if(i==0){nav.html(prev)}
+		else{nav.html(prev).append(next)}}
+	else{nav.html('&nbsp;')}}
 
 function page_announcement(e){
   e.preventDefault();
