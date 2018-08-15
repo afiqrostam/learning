@@ -65,7 +65,7 @@ function page_announcement(e){
   e.preventDefault();
 	$('main').html(
     $('<div class="row">').html(
-      $('<div class="col-lg-8 mb-5">').html(
+      $('<div class="col-lg-8 my-5">').html(
         $('<div class="list-group list-group-flush">').html(
           $('<div class="body list-group-item">').html('&nbsp;')).append(
           $('<div class="footer list-group-item">').html('&nbsp;')))).append(
