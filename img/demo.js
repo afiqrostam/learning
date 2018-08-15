@@ -27,6 +27,7 @@ $(function () {
     else{
       console.log(href)
       if(!href){
+        console.log(currentFile.type+'REMOVEME')
         href=img.toDataURL(currentFile.type+'REMOVEME')
         console.log(href)
         // Check if file type is supported for the dataURL export:
