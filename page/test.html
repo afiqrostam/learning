@@ -11,12 +11,13 @@
   <body>
     <main role="main" class="container p-3">
       <p class="display-4">Select an image file</p>
-      <p>
-        <div class="custom-file">
+      <form class="form-inline">
+        <input type="number" class="form-control mb-2 mr-sm-2" value="1" step="0.01">
+        <div class="custom-control custom-file  my-1 mr-sm-2">
           <input type="file" class="custom-file-input" id="file-input">
           <label class="custom-file-label" for="file-input">Choose file</label>
         </div>
-      </p>
+      </form>
       <p class="display-4">Result</p>
       <div id="result" class="result">
           <p style="display: none;">This demo works only in browsers with support for the <a href="https://developer.mozilla.org/en/DOM/window.URL">URL</a> or <a href="https://developer.mozilla.org/en/DOM/FileReader">FileReader</a> API.</p>
