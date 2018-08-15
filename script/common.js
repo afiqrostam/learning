@@ -132,23 +132,6 @@ function get_2D(dt,st){
 			else{lt.push(ip)}});
 	return lt}
 
-function display_update(e,i){
-	var entry=$('<div class="mb-5">').data('count',i);
-	entry.append(
-		$('<p class="lead m-0">').html(e.type+':'));
-	entry.append(e.content);
-	entry.append($('<p class="mb-3">').html(
-		$('<small class="font-italic">').html(
-			get_employee_registration(e.username).employee+' on '+new Date(e.timestamp))));
-	var nav=$('<p>').html('&nbsp');
-	var prev=$('<button class="btn mr-3 btn-sm btn-dark">').html('Previous').on('click',function(){
-		var i=$('.update-content').find('div').data('count');var e=def.news[i+1];display_update(e,i+1)});
-	var next=$('<button class="btn float-right mr-3 btn-sm btn-dark">').html('Next').on('click',function(){
-		var i=$('.update-content').find('div').data('count');var e=def.news[i-1];display_update(e,i-1)})
-	if(def.news.length-1==i){nav.append(next)}else if(i==0){nav.append(prev)}else{nav.append(prev).append(next)}
-	if(def.news.length>1){entry.append(nav)}
-	$('.update-content').html(entry)}
-
 function get_employee_registration(email){
 	if(email==undefined){
 		console.error('email not defined');
