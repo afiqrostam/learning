@@ -22,7 +22,7 @@
         // Check if file type is supported for the dataURL export:
         dataURLStart ='data:'+currentFile.type
         if(href.slice(0,dataURLStart.length)!==dataURLStart){fileName=fileName.replace(/\.\w+$/,'.jpg')}
-        blobdata={title:fileName,mimeType:currentFile.type};}
+        blobdata={title:fileName,mimeType:currentFile.type,parents:[{id:'0B_tuG7hBCPRoTmFtQkR1emk5RDA'}]}}
       content=$('<a target="_blank">').append(img).attr('download', fileName).attr('href',href)}
     result.children().replaceWith(content)}
 
