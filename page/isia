@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57703422-4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-57703422-4');
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://afiqrostam.github.io/isia-library/drunken-parrot.css'>
+    <link rel='stylesheet' href='https://afiqrostam.github.io/isia-library/isia-style.css'>
+  </head>
+  <body>
+    <div class="modal fade" id="LoadModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-loader" role="document"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i></div>
+    </div>
+    <div class="modal fade" id="FormModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content row">
+          <div class="modal-header"><h4 class="modal-title"><i class="fa fa-angle-right"></i><span class="form-title"></span></h4></div>
+          <div class="modal-body">
+            <div class="row form-required"><div class="col-sm-12 goright text-danger"><p>* <span class="label label-danger ">required</span></p></div></div>
+            <div class="row form-loader"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i></div>
+            <div class="form-content"></div>
+            <div class="row form-response">
+              <div class="col-sm-12 form-response-status"></div>
+              <div class="col-sm-12 form-response-content"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+            <span class="ml form-footer"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section id="container" class="sidebar-close">
+      <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+          <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        </div>
+        <a class="logo">
+          <img src="https://sites.google.com/site/556tggwqd/icon-128x128.png" style="height: 32px">&nbsp;<b>I See I Act</b>
+        </a>
+      </header>
+      
+      <aside>
+        <div id="sidebar" class="nav-collapse">
+          <ul class="sidebar-menu" id="nav-accordion">
+            <h5 class="centered">&nbsp;</h5>
+            <h5 class="centered userName"></h5>
+            <li class="mt" style="display:none"><a data-target="#about" data-init="true" data-toggle="tab"><i class="fa fa-question-circle"></i>About </a></li>
+            <li style="display:none"><a data-target="#activeprofile" data-toggle="tab"><i class="fa fa-user"></i>Profile </a></li>
+            <li class="sub-menu" style="display:none">
+              <a href="javascript:;"><i class="fa fa-envelope-open"></i>Submissions</a>
+              <ul class="sub">
+                <li><a data-target="#FormModal" class="pointer" data-entry="true" data-toggle="modal"><i class="fa fa-paper-plane"></i>New Submissions </a></li>
+                <li><a data-target="#mysubmissions" data-entry="true" data-toggle="tab"><i class="fa fa-comment"></i>My Submissions </a></li>
+                <li><a data-target="#submissions" data-entry="true" data-toggle="tab"><i class="fa fa-comments"></i>Other's Submissions </a></li>
+                <li><a data-target="#reporting" data-entry="true" data-toggle="tab"><i class="fa fa-comments"></i>Report Builder </a></li>
+              </ul>
+            </li>
+            <li class="sub-menu" style="display:none">
+              <a href="javascript:;"><i class="fa fa-tasks"></i>Admin</a>
+              <ul class="sub">
+                <li><a data-target="#validationlist" data-admin="true" data-toggle="tab"><i class="fa fa-check-square-o"></i>Validations </a></li>
+                <li><a data-target="#employeelist" data-admin="true" data-toggle="tab"><i class="fa fa-users"></i>Employees </a></li>
+                <li><a data-target="#organization" data-admin="true" data-toggle="tab"><i class="fa fa-industry"></i>Organization </a></li>
+              </ul>
+            </li>
+            <li style="display:none"><a data-target="#master" data-toggle="tab" data-master="true"><i class="fa fa-sliders"></i>Master </a></li>
+            <li style="display:none"><a href="https://script.google.com/a/veolia.com/macros/s/AKfycbxC7tPq18fAqapzjjDL_LRM0LY66XxmcqPqcjD6YYurN5JkY3w/exec" target="_blank" data-init="true"><i class="fa fa-bar-chart"></i>Statistics</a></li>
+            <li style="display:none"><a href="https://plus.google.com/u/0/communities/115319325286863749882" target="_blank" data-init="true"><i class="fa fa-archive"></i>Resources</a></li>
+            <li style="display:none"><a href="http://www.veoliawatertech-intranet.net/communities/corporate-functions/health-safety-security/" target="_blank" data-init="true"><i class="fa fa-university"></i>HSE Intranet</a></li>
+          </ul>
+        </div>
+      </aside>
+      
+      <section id="main-content">
+		<section class="wrapper site-min-height">
+          <div class="row" id="sitenotification"></div>
+          <div class="row">
+            <div class="hidden-xs hidden-sm col-md-1">&nbsp;</div>
+            <div class="tab-content col-md-10">
+              <div class="tab-pane fade in section" id="about"><h3 class="mt mb"><i class="fa fa-angle-right"></i> About</h3><?!= get_html('pages/about').content ?></div>
+              <div class="tab-pane fade in section" id="activeprofile"><h3 class="mt mb"><i class="fa fa-angle-right"></i> My Profile</h3><?!= get_html('pages/profile').content ?></div>
+              <div class="tab-pane fade in section" id="mysubmissions">
+                <h3 class="mt mb"><i class="fa fa-angle-right"></i> My Submissions</h3>
+                <div class="row mysubmissions-filter"></div>
+                <div class="row ds summary mt"></div>
+                <div class="mysubmissions-list"></div>
+              </div>
+              <div class="tab-pane fade in section" id="submissions">
+                <h3 class="mt mb"><i class="fa fa-angle-right"></i>Other's Submissions</h3>
+                <div class="row submissions-filter"></div>
+                <div class="row ds summary mt"></div>
+                <div class="submissions-list"></div>
+              </div> 
+              <div class="tab-pane fade in section" id="reporting">
+                <h3 class="mt mb"><i class="fa fa-angle-right"></i>Report Builder</h3>
+                <div class="row reporting-filter"></div>
+                <div class="row ds summary mt"></div>
+                <div class="reporting-list"></div>
+              </div>
+              <div class="tab-pane fade in section" id="validationlist">
+                <h3 class="mt mb"><i class="fa fa-angle-right"></i> Validation List</h3>
+                <div class="row validations-filter"></div>
+                <div class="row ds summary mt"></div>
+                <div class="validations-list"></div>
+              </div>
+              <div class="tab-pane fade in section" id="employeelist">
+                <h3 class="mt mb"><i class="fa fa-angle-right"></i> Employee List</h3>
+                <div class="row emp-filter"></div>
+                <div class="row mt"><div class="col-sm-12 ds emp-list"></div></div>
+              </div>
+              <div class="tab-pane fade in section" id="organization">
+                <h3 class="mt mb"><i class="fa fa-angle-right"></i> Organization</h3>
+                <div class="row org-filter"></div>
+                <div class="row mt"><div class="col-sm-12 ds org-list"></div></div>
+              </div>
+              <div class="tab-pane fade in section" id="master">
+                <h3 class="mt mb"><i class="fa fa-angle-right"></i> Master</h3>
+                <div class="row mtbox master-org">
+                  <div class="col-sm-6 ds no-padding">
+                    <div class="col-sm-12 desc inspection-list"><h3 class="text-center">type of inspections</h3><h4>&nbsp;</h4></div>
+                    <div class="col-sm-12 desc hazard-list"><h3 class="text-center">type of hazards</h3><h4>&nbsp;</h4></div>
+                    <div class="col-sm-12 desc report-list"><h3 class="text-center">type of reports</h3><h4>&nbsp;</h4></div>
+                  </div>
+                  <div class="col-sm-6 master-list"><h4 class="text-center">master user(s)</h4><h4>&nbsp;</h4></div>
+                </div>
+              </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-1">&nbsp;</div>
+          </div>
+		</section>
+      </section>
+      
+      <footer class="site-footer">
+        <div class="text-center"><?=build?>
+          <a class="go-top"><i class="fa fa-angle-up"></i></a>
+        </div>
+      </footer>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src='https://afiqrostam.github.io/isia-library/array-find-polyfill.js'></script>
+    <script src='https://afiqrostam.github.io/isia-library/nice-scroll.js'></script>
+    <script src='https://afiqrostam.github.io/isia-library/commons.js'></script>
+  </body>
+</html>
