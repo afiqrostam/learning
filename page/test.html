@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="https://afiqrostam.github.io/learning/css/apply/app.css" type="text/css" />
   </head>
 	<body class="dark">
-		<div class="app" id="app">
+    <div class="modal fade show bg-light" tabindex="-1" role="dialog" id="main-loader" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+        <div class="card border-0 bg-transparent text-dark">
+          <img src="https://afiqrostam.github.io/learning/128.png" alt="Card image" 
+               class="card-img" style="width: 64px; animation: loader-img 4s infinite ease-in;">
+        </div>
+      </div>
+    </div>
+		<div class="app hide" id="app">
 			<div id="aside" class="app-aside fade box-shadow-x nav-expand" aria-hidden="true">
 				<div class="sidenav modal-dialog dk">
 					<div class="navbar dk">
