@@ -1,3 +1,6 @@
+var init={};
+var def={};
+
 function init_bu(){
 	Object.keys(def.bu).forEach(
 		function(e){
@@ -103,3 +106,104 @@ function get_2D(dt,st){
 			if(st.key!=undefined){lt[ip[st.key]]=ip}
 			else{lt.push(ip)}});
 	return lt}
+
+function get_init(){
+	def={q:{}};
+	init={};
+	var f=arguments.callee.name;
+	console.time(f);
+	show_main_loader()
+	google.script.run.withSuccessHandler(
+		function(e,f){
+			if(e.s){
+				init=e.res;
+				console.timeEnd(f);
+				get_ready();
+				get_employees();
+				google.script.run.withSuccessHandler(
+					function(g){
+						if(g.s){init.us.photo=g.res[0].photo}}).get_users(init.us.email)}
+			else{
+				console.timeEnd(f);
+				hide_main_loader()}}).withUserObject(f).get_var('init')}
+
+function get_ready(){
+  var f=arguments.callee.name;
+	def.q[arguments.callee.name]={}
+	console.time(f);
+	show_main_loader();
+  google.script.run.withSuccessHandler(
+    function(e,f){
+			if(e.s){
+				init.sp.settings.ranges.forEach(
+					function(a,b){
+						a.header=$.extend(true,[],e.res[b].values[0]);
+						def[a.name]=get_2D(e.res[b].values,a)});
+				init_bu();
+				init_project();
+				console.timeEnd(f);
+				delete def.q[f];
+				q_check(hide_main_loader())}
+    else{
+			console.log(e.con);
+			console.timeEnd(f);
+			delete def.q[f];
+			q_check(hide_main_loader())}}).withUserObject(f).get_batch_data_list({
+		sheet_id:init.sp.settings.id,
+		sheet_range:init.sp.settings.ranges.map(
+			function(e){return e.sheet})})}
+
+function get_employees(){
+  var f=arguments.callee.name;
+	def.q[arguments.callee.name]={}
+	console.time(f);
+	show_main_loader();
+  google.script.run.withSuccessHandler(
+    function(e,f){
+			if(e.s){
+				init.sp.employee.ranges.forEach(
+					function(a){
+						a.header=$.extend(true,[],e.res[0]);
+						def[a.name]=get_2D(e.res,a)});
+				console.timeEnd(f);
+				delete def.q[f];
+				q_check(hide_main_loader())}
+    else{
+			console.log(e.con);
+			console.timeEnd(f);
+			delete def.q[f];
+			q_check(hide_main_loader())}}).withUserObject(f).get_data_list({
+		sheet_id:init.sp.employee.id,
+		sheet_name:init.sp.employee.ranges.map(
+			function(e){return e.sheet})[0]})}
+
+function q_check(fn){
+	if(Object.keys(def.q).length==0){fn}}
+
+function hide_main_loader(){
+	if(!$('#main-loader').hasClass('show')){
+		$('#main-loader').addClass('show')}
+	if(!$('#app').hasClass('show')){
+		$('#app').addClass('show')}
+	if(!$('#main-loader').hasClass('hide')){
+		$('#main-loader').addClass('hide')}
+	if($('app').hasClass('hide')){
+		$('#app').removeClass('hide')}}
+
+function show_main_loader(){
+	if(!$('#main-loader').hasClass('show')){
+		$('#main-loader').addClass('show')}
+	if(!$('#app').hasClass('show')){
+		$('#app').addClass('show')}
+	if($('#main-loader').hasClass('hide')){
+		$('#main-loader').removeClass('hide')}
+	if(!$('app').hasClass('hide')){
+		$('#app').addClass('hide')}}
+
+console.time('init');
+if(window.location.host.includes('googleusercontent')){
+  console.timeEnd('init');
+	get_init()}
+else{
+  console.timeEnd('init');
+  hide_main_loader())}
