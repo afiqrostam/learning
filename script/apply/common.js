@@ -188,24 +188,12 @@ function q_check(fn){
 	if(Object.keys(def.q).length==0){fn}}
 
 function hide_main_loader(){
-	if(!$('#main-loader').hasClass('show')){
-		$('#main-loader').addClass('show')}
-	if(!$('#app').hasClass('show')){
-		$('#app').addClass('show')}
-	if(!$('#main-loader').hasClass('hide')){
-		$('#main-loader').addClass('hide')}
-	if($('app').hasClass('hide')){
-		$('#app').removeClass('hide')}}
+	$('#main-loader').addClass('hide');
+	$('#app').removeClass('hide')}}
 
 function show_main_loader(){
-	if(!$('#main-loader').hasClass('show')){
-		$('#main-loader').addClass('show')}
-	if(!$('#app').hasClass('show')){
-		$('#app').addClass('show')}
-	if($('#main-loader').hasClass('hide')){
-		$('#main-loader').removeClass('hide')}
-	if(!$('app').hasClass('hide')){
-		$('#app').addClass('hide')}}
+	$('#main-loader').removeClass('hide');
+	$('#app').addClass('hide')}
 
 console.time('init');
 if(window.location.host.includes('googleusercontent')){
