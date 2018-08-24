@@ -1,6 +1,13 @@
 var init={};
 var def={};
 
+function array_unique(a){
+	t=[];
+	a.forEach(
+		function(e){
+			if(t.indexOf(e)==-1){t.push(e)}});
+	return t}
+
 function init_bu(){
 	Object.keys(def.bu).forEach(
 		function(e){
