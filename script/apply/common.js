@@ -189,7 +189,7 @@ function q_check(fn){
 
 function hide_main_loader(){
 	$('#main-loader').addClass('hide');
-	$('#app').removeClass('hide')}}
+	$('#app').removeClass('hide')}
 
 function show_main_loader(){
 	$('#main-loader').removeClass('hide');
