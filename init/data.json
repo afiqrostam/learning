@@ -1,4 +1,6 @@
  {
+   'us':{
+     'email':Session.getActiveUser().getEmail()},
    'sp':{
      'major_dimension':{'majorDimension':'COLUMNS'}, 
      'input_option':{'valueInputOption':'USER_ENTERED'}, 
