@@ -85,5 +85,17 @@
 			],
 			"id":"1W5ralgc7Cczbvf3qwfb6F_3ErlCbpr2lGIJwMHjf12Y"
 		}
+	},
+	"we":
+	{
+		"favicon":"https://afiqrostam.github.io/learning/ISIA128.png",
+		"title":"Hazard Spotter: I See I Act",
+		"meta_tag":
+		{
+			"viewport":"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no",
+			"apple-mobile-web-app-capable":"yes", 
+			"mobile-web-app-capable":"yes"
+		}
 	}
+	
 }
