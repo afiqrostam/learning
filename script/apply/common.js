@@ -206,4 +206,4 @@ if(window.location.host.includes('googleusercontent')){
 	get_init()}
 else{
   console.timeEnd('init');
-  hide_main_loader())}
+  hide_main_loader()}
