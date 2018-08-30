@@ -169,8 +169,6 @@ function get_ready(){
 					function(a,b){
 						a.header=$.extend(true,[],e.res[b].values[0]);
 						def[a.name]=get_2D(e.res[b].values,a)});
-				b_i();
-				p_i();
 				console.timeEnd(f);
 				delete def.q[f];
 				q_check(hide_main_loader())}
