@@ -135,9 +135,7 @@ function e_f(a){
 	if(u_def(a.f)){return b.map(a.m)}
 	return b.filter(a.f).map(a.m)}
 // return user registration status
-function e_g_u(a){
-	var b=e_g(a);
-	if(!b){return b}
+function e_g_u(){
 	var u=e_f({f:function(c){return e_g(c).email==init.us.email}});
 	if(a_len(u,0)){return c_err('user not registered')}
 	return u.pop()}
