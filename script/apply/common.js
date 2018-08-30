@@ -115,6 +115,32 @@ function c_g_c(a){
 	var pc=p_f({f:function(c){return p_g(c).country==a}});
 	if(a_len(pc,0)){return c_err('no child found')}
 	return pc}
+
+//Employee Utillities
+// return Employee keys
+function e_k(){return Object.keys(def.employee)}
+// return Employee by ID
+function e_g(a){
+	if(u_def(a)){return c_err('ID not defined')}
+	if(s_sub(a,'B')){return c_err('invalid ID')}
+	var b=def.employee[a];
+	if(u_def(b)){return c_err('invalid ID')}
+	return b}
+// filter & map Employee; f:filter; m:map
+function e_f(a){
+	var b=e_k();
+	var c=function(d){return e_g(d)};
+	if(u_def(a)){return b.map(c)}
+	if(u_def(a.m)){return b.filter(a.f).map(c)}
+	if(u_def(a.f)){return b.map(a.m)}
+	return b.filter(a.f).map(a.m)}
+// return user registration status
+function e_g_u(a){
+	var b=e_g(a);
+	if(!b){return b}
+	var u=e_f({f:function(c){return e_g(c).email==init.us.email}});
+	if(a_len(u,0)){return c_err('user not registered')}
+	return u.pop()}
 		
 function get_2D(dt,st){
 	var hd=dt.shift();
