@@ -122,7 +122,7 @@ function e_k(){return Object.keys(def.employee)}
 // return Employee by ID
 function e_g(a){
 	if(u_def(a)){return c_err('ID not defined')}
-	if(s_sub(a,'B')){return c_err('invalid ID')}
+	if(s_sub(a,'E')){return c_err('invalid ID')}
 	var b=def.employee[a];
 	if(u_def(b)){return c_err('invalid ID')}
 	return b}
