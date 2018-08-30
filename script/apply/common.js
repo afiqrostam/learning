@@ -42,7 +42,7 @@ function b_g_p(a){
 	if(!u_def(b.add_project)){return b.add_project}
 	var c=[];
 	if(!u_def(b.country)){c.push(b.country)}
-	while(!u_def(b_g(b.root))){
+	while(!u_defb.root)){
 		b=b_g(b.root);
 		if(!u_def(b.country)){c.push(b.country)}}
 	if(!a_len(c,1)){return c_err('no country found')}
@@ -86,7 +86,7 @@ function p_g_c(a){
 	if(h.length>1){return c_err('country not found')}
 	return h.pop()}
 // initialize Project
-function init_project(){p_k().forEach(function(e){p_g(e).country=p_g_c(e)})}
+function p_i(){p_k().forEach(function(e){p_g(e).country=p_g_c(e)})}
 
 //Country Utillities
 // return Country keys
@@ -169,6 +169,8 @@ function get_ready(){
 					function(a,b){
 						a.header=$.extend(true,[],e.res[b].values[0]);
 						def[a.name]=get_2D(e.res[b].values,a)});
+				b_i();
+				p_i();
 				console.timeEnd(f);
 				delete def.q[f];
 				q_check(hide_main_loader())}
