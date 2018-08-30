@@ -1,97 +1,120 @@
 var init={};
 var def={};
 
-function array_unique(a){
-	t=[];
-	a.forEach(
-		function(e){
-			if(t.indexOf(e)==-1){t.push(e)}});
-	return t}
+//Common Utillities
+function a_uni(a){var b=[];a.forEach(function(c){if(b.indexOf(c)==-1){b.push(c)}});return b}
+function a_len(a,b){if(a.length==b){return true}return false}
+function u_def(a){if(a==undefined){return true}return false}
+function c_err(a){console.error(a);return false}
+function s_sub(a,b){if(a.substr(0,1)!=b){return true}return false}
 
-function init_bu(){
-	Object.keys(def.bu).forEach(
-		function(e){
-			def.bu[e].has_child=get_bu_child(e);
-			def.bu[e].add_project=get_bu_project(e)})}
+//BU Utillities
+// return BU keys
+function b_k(){return Object.keys(def.bu)}
+// return BU by ID
+function b_g(a){
+	if(u_def(a)){return c_err('ID not defined')}
+	if(s_sub(a,'B')){return c_err('invalid ID')}
+	var b=def.bu[a];
+	if(u_def(b)){return c_err('invalid ID')}
+	return b}
+// filter & map BU; f:filter; m:map
+function b_f(a){
+	var b=b_k();
+	var c=function(d){return b_g(d)};
+	if(u_def(a)){return b.map(c)}
+	if(u_def(a.m)){return b.filter(a.f).map(c)}
+	if(u_def(a.f)){return b.map(a.m)}
+	return b.filter(a.f).map(a.m)}
+// return BU child
+function b_g_c(a){
+	var b=b_g(a);
+	if(!b){return b}
+	if(!u_def(b.has_child)){return b.has_child}
+	var bc=b_f({f:function(c){return b_g(c).root==a}});
+	var pc=p_f({f:function(c){return p_g(c).root.split(',').indexOf(a)!=-1}});
+	if(a_len(bc,0)&&a_len(pc,0)){return c_err('no child found')}
+	return bc.concat(pc)}
+// return BU project status
+function b_g_p(a){
+	var b=b_g(a);
+	if(!b){return b}
+	if(!u_def(b.add_project)){return b.add_project}
+	var c=[];
+	if(!u_def(b.country)){c.push(b.country)}
+	while(!u_def(b_g(b.root))){
+		b=b_g(b.root);
+		if(!u_def(b.country)){c.push(b.country)}}
+	if(!a_len(c,1)){return c_err('no country found')}
+	return c.pop()}
+// initialize BU
+function b_i(){b_k().forEach(function(e){b_g(e).has_child=b_g_c(e);b_g(e).add_project=b_g_p(e)})}
 
-function get_bu_region(){
-	return Object.keys(def.bu).filter(
-		function(e){return def.bu[e].root==undefined}).map(
-		function(e){return def.bu[e]})}
-      
-function get_bu_child(id){
-  if(id==undefined){console.error('ID not defined');return false}
-  else if(id.substr(0,1)!='B'){console.error('invalid ID type');return false}
-  else if(def.bu[id]==undefined){console.error('invalid ID');return false}
-  else{
-	  if(def.bu[id].has_child!=undefined){return def.bu[id].has_child}
-		else{
-			var find_bu=Object.keys(def.bu).filter(
-				function(e){return def.bu[e].root==id}).map(
-				function(e){return def.bu[e]});
-			var find_project=Object.keys(def.project).filter(
-				function(e){return def.project[e].root.split(',').indexOf(id)!=-1}).map(
-				function(e){return def.project[e]});
-			if(find_bu.length!=0&&find_project.length!=0){return find_bu.concat(find_project)}
-			else if(find_bu.length!=0){return find_bu}
-			else if(find_project.length!=0){return find_project}
-			else{console.error('no futher child found');return false}}}}
+//Project Utillities
+// return Project keys
+function p_k(){return Object.keys(def.project)}
+// return Project by ID
+function p_g(a){
+	if(u_def(a)){return c_err('ID not defined')}
+	if(s_sub(a,'P')){return c_err('invalid ID')}
+	var b=def.project[a];
+	if(u_def(b)){return c_err('invalid ID')}
+	return b}
+// filter & map Project; f:filter; m:map
+function p_f(a){
+	var b=p_k();
+	var c=function(d){return p_g(d)};
+	if(u_def(a)){return b.map(c)}
+	if(u_def(a.m)){return b.filter(a.f).map(c)}
+	if(u_def(a.f)){return b.map(a.m)}
+	return b.filter(a.f).map(a.m)}
+// return Project country
+function p_g_c(a){
+	var b=p_g(a);
+	if(!b){return b}
+	if(u_def(b.country)){return b.country}
+	var c=b.root.split(',');
+	var d=c.filter(function(e){return !u_def(b_g(e).country)});
+	if(a_len(d,0)){
+		while(a_len(d,0)){
+			var f=c.map(function(e){var g=b_g(e);if(!u_def(g.root)){return g.root}return e});
+			if(f!=c){c=f}else{break}
+			var d=c.filter(function(e){return !u_def(b_g(e).country)})}
+		if(a_len(d,0)){return c_err('country not found')}}
+	d=d.map(function(e){return b_g(e).country});
+	var h=a_uni(d);	
+	if(h.length>1){return c_err('country not found')}
+	return h.pop()}
+// initialize Project
+function init_project(){p_k().forEach(function(e){p_g(e).country=p_g_c(e)})}
 
-function get_bu_project(id){
-  if(id==undefined){console.error('ID not defined');return false}
-  else if(id.substr(0,1)!='B'){console.error('invalid ID type');return false}
-  else if(def.bu[id]==undefined){console.error('invalid ID');return false}
-  else{
-		var find=def.bu[id];
-		if(find.add_project!=undefined){return find.add_project}
-		else{
-			if(find.country!=undefined){var country=[find.country]}else{var country=[]}
-			while(find.root!=undefined){
-				find=def.bu[find.root];
-				if(find.country!=undefined){country.push(find.country)}}
-			if(country.length==0){console.error('no country found');return false}
-			else if(country.length>1){console.error('unexpected outcome');return false}
-			else{return country[0]}}}}
-
-function init_project(){
-	Object.keys(def.project).forEach(
-		function(e){def.project[e].country=get_project_country(e)})}
-         
-function get_country_current(){
-  return array_unique(Object.keys(def.project).map(
-    function(e){return def.project[e].country})).map(
-      function(e){return def.country[e]})}
-
-function get_country_child(id){
-	if(id==undefined){console.error('ID not defined');return false}
-  else if(id.substr(0,1)!='C'){console.error('invalid ID type');return false}
-  else{
-    var find_project=Object.keys(def.project).filter(
-			function(e){return def.project[e].country==id}).map(
-			function(e){return def.project[e]});
-    if(find_project.length!=0){return find_project}
-    else{console.error('no futher child found');return false}}}
-
-function get_project_country(id){
-	if(id==undefined){console.error('ID not defined');return false}
-  else if(id.substr(0,1)!='P'){console.error('invalid ID type');return false}
-  else if(def.project[id]==undefined){console.error('invalid ID');return false}
-	else{
-		if(def.project[id].country!=undefined){return def.project[id].country}
-		else{
-			var root=def.project[id].root.split(',');
-			var find_root=root.filter(function(f){return def.bu[f].country!=undefined});
-			if(find_root.length==0){
-				while(find_root.length==0){
-					var new_root=root.map(function(f){
-						if(def.bu[f].root!=undefined){return def.bu[f].root}else{return f}});
-					if(new_root!=root){root=new_root}else{break}
-					var find_root=root.filter(function(f){return def.bu[f].country!=undefined})}
-				if(find_root.length==0){console.error('country not found');return false}}
-			find_root=find_root.map(function(f){return def.bu[f].country});
-			var trim=array_unique(find_root);	
-			if(trim.length>1){console.error('country not found');return false}
-		else{return trim[0]}}}}
+//Country Utillities
+// return Country keys
+function c_k(){return Object.keys(def.country)}
+// return Country by ID
+function c_g(a){
+	if(u_def(a)){return c_err('ID not defined')}
+	if(s_sub(a,'C')){return c_err('invalid ID')}
+	var b=def.country[a];
+	if(u_def(b)){return c_err('invalid ID')}
+	return b}
+// filter & map Country; f:filter; m:map
+function c_f(a){
+	var b=c_k();
+	var c=function(d){return c_g(d)};
+	if(u_def(a)){return b.map(c)}
+	if(u_def(a.m)){return b.filter(a.f).map(c)}
+	if(u_def(a.f)){return b.map(a.m)}
+	return b.filter(a.f).map(a.m)}
+// return current Country
+function c_c(){return a_uni(p_f({m:function(e){return p_g(e).country}}).map(function(e){return c_g(e)}))}
+// return Country child
+function c_g_c(a){
+	var b=c_g(a);
+	if(!b){return b}
+	var pc=p_f({f:function(c){return p_g(c).country==a}});
+	if(a_len(pc,0)){return c_err('no child found')}
+	return pc}
 		
 function get_2D(dt,st){
 	var hd=dt.shift();
@@ -146,8 +169,8 @@ function get_ready(){
 					function(a,b){
 						a.header=$.extend(true,[],e.res[b].values[0]);
 						def[a.name]=get_2D(e.res[b].values,a)});
-				init_bu();
-				init_project();
+				b_i();
+				p_i();
 				console.timeEnd(f);
 				delete def.q[f];
 				q_check(hide_main_loader())}
