@@ -42,7 +42,7 @@ function b_g_p(a){
 	if(!u_def(b.add_project)){return b.add_project}
 	var c=[];
 	if(!u_def(b.country)){c.push(b.country)}
-	while(!u_defb.root)){
+	while(!u_def(b.root)){
 		b=b_g(b.root);
 		if(!u_def(b.country)){c.push(b.country)}}
 	if(!a_len(c,1)){return c_err('no country found')}
