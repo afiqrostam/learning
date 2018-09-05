@@ -35,6 +35,21 @@ function b_g_c(a){
 	var pc=p_f({f:function(c){return p_g(c).root.split(',').indexOf(a)!=-1}});
 	if(a_len(bc,0)&&a_len(pc,0)){return c_err('no child found')}
 	return bc.concat(pc)}
+// return BU roots
+function b_g_r(a){
+	var b=b_g(a);
+	if(!b){return b}
+	var c=[b];
+	while(!u_def(b.root)){
+		b=b_g(b.root);
+		c.push(b)}
+	return c}
+// return BU name
+function b_g_n(a){
+	var b=b_g(a);
+	if(!b){return b}
+	if(u_def(b.bu)){return c_g(b.country).country}
+	return b.bu}
 // return BU project status
 function b_g_p(a){
 	var b=b_g(a);
@@ -48,7 +63,31 @@ function b_g_p(a){
 	if(!a_len(c,1)){return c_err('no country found')}
 	return c.pop()}
 // initialize BU
-function b_i(){b_k().forEach(function(e){b_g(e).has_child=b_g_c(e);b_g(e).add_project=b_g_p(e)})}
+function b_i(){
+	var f=arguments.callee.name;
+	console.time(f);
+	b_k().forEach(function(e){b_g(e).has_child=b_g_c(e);b_g(e).add_project=b_g_p(e)});
+	console.timeEnd(f)}
+// reload BU database
+function b_u(t){
+	if(u_def(t)){var t={}}
+	t.f=arguments.callee.name;
+	console.time(t.f);
+	if(!u_def(t.b)){eval(t.b)}
+	google.script.run.withSuccessHandler(
+		function(e,f){
+			if(e.s){
+				init.sp.settings.ranges.filter(function(e){return e.name=='bu'}).forEach(
+					function(a){a.header=$.extend(true,[],e.res[0]);def[a.name]=get_2D(e.res,a)});
+				console.timeEnd(f.f);
+				b_i();
+				if(!u_def(f.a)){eval(f.a)}}
+			else{
+				console.log(e.con);
+				console.timeEnd(f.f);
+				if(!u_def(f.a)){eval(f.a)}}}).withUserObject(t).get_data_list({
+		sheet_id:init.sp.settings.id,
+		sheet_name:init.sp.settings.ranges.filter(function(e){return e.name=='bu'}).pop().sheet})}
 
 //Project Utillities
 // return Project keys
@@ -86,7 +125,33 @@ function p_g_c(a){
 	if(h.length>1){return c_err('country not found')}
 	return h.pop()}
 // initialize Project
-function p_i(){p_k().forEach(function(e){p_g(e).country=p_g_c(e)})}
+function p_i(){
+	var f=arguments.callee.name;
+	console.time(f);
+	p_k().forEach(function(e){p_g(e).country=p_g_c(e)});
+	console.timeEnd(f)}
+// reload Project database
+function p_u(t){
+	if(u_def(t)){var t={}}
+	t.f=arguments.callee.name;
+	console.time(t.f);
+	if(!u_def(t.b)){eval(t.b)}
+	google.script.run.withSuccessHandler(
+		function(e,f){
+			if(e.s){
+				init.sp.settings.ranges.filter(
+					function(e){return e.name=='project'}).forEach(
+					function(a){a.header=$.extend(true,[],e.res[0]);def[a.name]=get_2D(e.res,a)});
+				console.timeEnd(f.f);
+				p_i();
+				if(!u_def(f.a)){eval(f.a)}}
+			else{
+				console.log(e.con);
+				console.timeEnd(f.f);
+				if(!u_def(f.a)){eval(f.a)}}}).withUserObject(t).get_data_list({
+		sheet_id:init.sp.settings.id,
+		sheet_name:init.sp.settings.ranges.filter(
+			function(e){return e.name=='project'}).pop().sheet})}
 
 //Country Utillities
 // return Country keys
@@ -134,7 +199,7 @@ function e_f(a){
 	if(u_def(a.m)){return b.filter(a.f).map(c)}
 	if(u_def(a.f)){return b.map(a.m)}
 	return b.filter(a.f).map(a.m)}
-// return user registration status
+// return Employee registration status
 function e_g_u(){
 	var u=e_f({f:function(c){return e_g(c).email==init.us.email}});
 	if(a_len(u,0)){return c_err('user not registered')}
