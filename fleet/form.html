@@ -26,7 +26,7 @@
       <!-- Topbar -->
       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
         <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-          <h1 class="h3 text-gray-800">Fleet Asset Request</h1>
+          <h1 class="h4 text-gray-800">Fleet Asset Request</h1>
         </div>
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
@@ -60,105 +60,163 @@
         <div class="row">
           <div class="col">
             <form>
-              <div class="card shadow mb-1 asset-container">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Asset
-                    <span class="asset-count">#1</span>
-                  </h6>
+              <div id="form">
+                <div class="card shadow mb-1 asset-container">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Asset
+                      <span class="asset-count">#1</span>
+                    </h6>
+
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group row">
+                      <div class="col">
+                        <input type="text" class="form-control border-left-danger" name="data_s4asset"
+                          placeholder="S/4 Asset # (required)" required>
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control border-left-danger" name="data_vamsequipment"
+                          placeholder="VAMS Equipment # (required)" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col mx-2">
+                        <p class="lead text-center radius-2">From</p>
+                        <input type="text" class="form-control border-left-danger mb-1" name="data_fromdescription"
+                          placeholder="Current Description (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="data_fromcostcentre"
+                          placeholder="S/4 Cost Centre (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="data_contract"
+                          placeholder="WDV or Lease Contract (required)" required>
+                        <input type="text" class="form-control mb-1" name="data_fromreference"
+                          placeholder="Fleet / Reference">
+                        <input type="text" class="form-control mb-1" name="data_fromregistration"
+                          placeholder="Registration">
+                      </div>
+                      <div class="col mx-2">
+                        <p class="lead text-center radius-2">To</p>
+                        <input type="text" class="form-control mb-1" name="data_todescription"
+                          placeholder="New Description">
+                        <input type="text" class="form-control mb-1" name="data_fromcostcentre"
+                          placeholder="S/4 Cost Centre">
+                        <input type="text" class="form-control mb-1" name="data_location" placeholder="Func. Location">
+                        <input type="text" class="form-control mb-1" name="data_group" placeholder="Planner Group">
+                        <input type="text" class="form-control mb-1" name="data_toreference"
+                          placeholder="Fleet / Reference">
+                        <input type="text" class="form-control mb-1" name="data_toregistration"
+                          placeholder="Registration">
+                      </div>
+                    </div>
+                    <button type="button" class="d-none btn btn-sm btn-dark float-right asset-delete">delete
+                      entry</button>
+                  </div>
+                </div>
+                <div class="form-group mb-1 row">
+                  <div class="col">
+                    <button id="addasset" type="button" class="btn btn-sm btn-info float-right">add new entry</button>
+                  </div>
+                </div>
+                <div class="card shadow mb-1">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Transfer Details</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group row">
+                      <div class="col mx-2">
+                        <input type="text" class="form-control border-left-danger mb-1" name="transferdate"
+                          placeholder="Transfer Date (required)" required>
+                        <input type="text" class="form-control mb-1" name="odometer" placeholder="Odometer">
+                        <input type="text" class="form-control mb-1" name="enginehours" placeholder="Engine Hours">
+                      </div>
+                      <div class="col mx-2">
+                        <input type="text" class="form-control border-left-danger mb-1" name="prepared"
+                          placeholder="Prepared by (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="preparedemail"
+                          placeholder="Prepared by E-Mail (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="fleetcoordinator"
+                          placeholder="Fleet Coordinator (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="fleetcoordinatoredemail"
+                          placeholder="Fleet Coordinator E-Mail (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="equipmentmanager"
+                          placeholder="Equipment Manager (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="equipmentmanageredemail"
+                          placeholder="Equipment Manager E-Mail (required)" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col mx-2">
+                        <label for="exampleFormControlTextarea1">Reason for Transfer / Comments</label>
+                        <textarea class="form-control" name="transferreason" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card shadow mb-1">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Approvals & Notification</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group row">
+                      <div class="col mx-2">
+                        <p class="lead text-center radius-2">From</p>
+                        <input type="text" class="form-control border-left-danger mb-1" name="fromdepot"
+                          placeholder="Depot / Site (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="request"
+                          placeholder="Request By (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="requestemail"
+                          placeholder="Request By E-Mail (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="frombumanager"
+                          placeholder="Business Unit Manager (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="frombumanageremail"
+                          placeholder="Business Unit Manager E-Mail (required)" required>
+                      </div>
+                      <div class="col mx-2">
+                        <p class="lead text-center radius-2">To</p>
+                        <input type="text" class="form-control border-left-danger mb-1" name="todepot"
+                          placeholder="Depot / Site (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="tobumanager"
+                          placeholder="Business Unit Manager (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="tobumanageremail"
+                          placeholder="Business Unit Manager E-Mail (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="tostatemanager"
+                          placeholder="State Manager (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="tostatemanageremail"
+                          placeholder="State Manager E-Mail (required)" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="update" class="d-none">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                  <div class="card-body p-0">
+                    <div class="row">
+                      <div class="col-lg-6 d-none d-lg-block bg-success"></div>
+                      <div class="col-lg-6">
+                        <div class="p-5">
+                          <div class="text-justify">
+                            <h1 class="h4 text-gray-900 mb-2">Submitted!</h1>
+                            <p class="mb-4">Usu dolorem legendos in. Sit errem audiam omittantur ex. Quo ne ubique
+                              vocent conceptam. Cu quod nullam pri, sed rebum perpetua et.</p>
+                            <p class="mb-4">At qui nominavi definitionem. Vel atqui vivendo ancillae ne, his an
+                              prodesset constituto. Cum facer nullam eruditi cu. Usu ex erat magna primis, ea est errem
+                              splendide. Eum vero primis accusam ex, an sit laudem laoreet iudicabit, ne mea simul
+                              feugiat. Pri summo noluisse interpretaris ad, usu facete theophrastus id.</p>
+                            <p class="mb-4">Quod concludaturque per ea, his ei posse vidisse scribentur, et qui solum
+                              option. Ignota denique persecuti eu ius. Eum euripidis voluptaria id, sea no veniam
+                              regione. Te mei oblique delenit, mel ei oblique oportere dissentiet. Ut sumo possim
+                              pertinax duo.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                 </div>
-                <div class="card-body">
-                  <div class="form-group row">
-                    <div class="col">
-                      <input type="text" class="form-control border-left-danger" name="data_s4asset" placeholder="S/4 Asset # (required)" required>
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control border-left-danger" name="data_vamsequipment" placeholder="VAMS Equipment # (required)" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col mx-2">
-                      <p class="lead text-center radius-2">From</p>
-                      <input type="text" class="form-control border-left-danger mb-1" name="data_fromdescription" placeholder="Current Description (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="data_fromcostcentre" placeholder="S/4 Cost Centre (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="data_contract" placeholder="WDV or Lease Contract (required)" required>
-                      <input type="text" class="form-control mb-1" name="data_fromreference" placeholder="Fleet / Reference">
-                      <input type="text" class="form-control mb-1" name="data_fromregistration" placeholder="Registration">
-                    </div>
-                    <div class="col mx-2">
-                      <p class="lead text-center radius-2">To</p>
-                      <input type="text" class="form-control mb-1" name="data_todescription" placeholder="New Description">
-                      <input type="text" class="form-control mb-1" name="data_fromcostcentre" placeholder="S/4 Cost Centre">
-                      <input type="text" class="form-control mb-1" name="data_location" placeholder="Func. Location">
-                      <input type="text" class="form-control mb-1" name="data_group" placeholder="Planner Group">
-                      <input type="text" class="form-control mb-1" name="data_toreference" placeholder="Fleet / Reference">
-                      <input type="text" class="form-control mb-1" name="data_toregistration" placeholder="Registration">
-                    </div>
-                  </div>
-                  <button type="button" class="d-none btn btn-sm btn-dark float-right asset-delete">delete entry</button>
-                </div>
-              </div>
-              <div class="form-group mb-1 row">
-                <div class="col">
-                  <button id="addasset" type="button" class="btn btn-sm btn-info float-right">add new entry</button>
-                  </div>
-              </div>
-              <div class="card shadow mb-1">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Transfer Details</h6>
-                </div>
-                <div class="card-body">
-                  <div class="form-group row">
-                    <div class="col mx-2">
-                      <input type="text" class="form-control border-left-danger mb-1" name="transferdate" placeholder="Transfer Date (required)" required>
-                      <input type="text" class="form-control mb-1" name="odometer" placeholder="Odometer">
-                      <input type="text" class="form-control mb-1" name="enginehours" placeholder="Engine Hours">
-                    </div>
-                    <div class="col mx-2">
-                      <input type="text" class="form-control border-left-danger mb-1" name="prepared" placeholder="Prepared by (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="preparedemail" placeholder="Prepared by E-Mail (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="fleetcoordinator" placeholder="Fleet Coordinator (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="fleetcoordinatoredemail" placeholder="Fleet Coordinator E-Mail (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="equipmentmanager" placeholder="Equipment Manager (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="equipmentmanageredemail" placeholder="Equipment Manager E-Mail (required)" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col mx-2">
-                    <label for="exampleFormControlTextarea1">Reason for Transfer / Comments</label>
-                    <textarea class="form-control" name="transferreason" rows="3"></textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card shadow mb-1">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Approvals & Notification</h6>
-                </div>
-                <div class="card-body">
-                  <div class="form-group row">
-                    <div class="col mx-2">
-                      <p class="lead text-center radius-2">From</p>
-                      <input type="text" class="form-control border-left-danger mb-1" name="fromdepot" placeholder="Depot / Site (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="request" placeholder="Request By (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="requestemail" placeholder="Request By E-Mail (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="frombumanager" placeholder="Business Unit Manager (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="frombumanageremail" placeholder="Business Unit Manager E-Mail (required)" required>
-                    </div>
-                    <div class="col mx-2">
-                      <p class="lead text-center radius-2">To</p>
-                      <input type="text" class="form-control border-left-danger mb-1" name="todepot" placeholder="Depot / Site (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="tobumanager" placeholder="Business Unit Manager (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="tobumanageremail" placeholder="Business Unit Manager E-Mail (required)" required>                      
-                      <input type="text" class="form-control border-left-danger mb-1" name="tostatemanager" placeholder="State Manager (required)" required>
-                      <input type="text" class="form-control border-left-danger mb-1" name="tostatemanageremail" placeholder="State Manager E-Mail (required)" required>
-                    </div>
-                  </div>
-                </div>
+
               </div>
               <div class="form-group my-3 row">
-                <div class="col">
-                  <button type="submit" class="btn btn-info mx-2">Preview</button><button type="submit" class="btn btn-primary">Submit</button>
+                <div class="col"><button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </div>
             </form>
@@ -197,8 +255,8 @@
             if (e.s) {
               init = e.res;
               $('.session-name').html(init.session.name);
-              $('.session-photo').prop('src',init.session.photo);
-              $('body').removeClass('d-none')
+              $('.session-photo').prop('src', init.session.photo);
+              $('body').removeClass('d-none');
             }
             console.timeEnd(f)
           }).withUserObject(f).get_var('init')
@@ -222,13 +280,26 @@
 
       var copy = template.clone(true);
       copy.find('.asset-count').html('#' + count);
-      if (count > 1) { 
+      if (count > 1) {
         copy.find('.asset-delete').removeClass('d-none')
-        template.find('.asset-delete').addClass('d-none') }
+        template.find('.asset-delete').addClass('d-none')
+      }
       copy.find(':input').each(function () { $(this).val('') })
       parent.before(copy)
     });
-    
+
+    $('button[type="submit"]').on('click', function (e) {
+      e.preventDefault();
+      if ($('#form').hasClass('d-none')) {
+        $('#form').removeClass('d-none');
+        $('#update').addClass('d-none')
+      }
+      else {
+        $('#form').addClass('d-none');
+        $('#update').removeClass('d-none')
+      }
+    });
+
     get_init();
   </script>
 
