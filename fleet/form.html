@@ -196,6 +196,8 @@
           function (e, f) {
             if (e.s) {
               init = e.res;
+              $('.session-name').html(init.session.name);
+              $('.session-photo').prop('src',init.session.photo);
               $('body').removeClass('d-none')
             }
             console.timeEnd(f)
