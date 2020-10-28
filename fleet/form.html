@@ -99,13 +99,17 @@
                           placeholder="Registration">
                       </div>
                     </div>
-                    <button type="button" class="d-none btn btn-sm btn-dark float-right asset-delete">delete
-                      entry</button>
+                    <div class=" asset-btn">
+                      <button type="button" class="d-none btn btn-sm btn-dark float-right asset-delete">delete
+                        entry</button>
+                    </div>
+
                   </div>
                 </div>
                 <div class="form-group mb-1 row">
-                  <div class="col">
-                    <button id="addasset" type="button" class="btn btn-sm btn-info float-right">add new entry</button>
+                  <div class="col asset-btn">
+                    <button id="addasset" type="button" class="btn btn-sm btn-info float-right">add new
+                      entry</button>
                   </div>
                 </div>
                 <div class="card shadow mb-1">
@@ -121,16 +125,33 @@
                         <input type="text" class="form-control mb-1" name="enginehours" placeholder="Engine Hours">
                       </div>
                       <div class="col mx-2">
-                        <input type="text" class="form-control border-left-danger mb-1" name="prepared"
-                          placeholder="Prepared by (required)" required>
+                        <div class="dropdown no-arrow">
+                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
+                            data-toggle="dropdown" name="prepared" placeholder="Prepared by (required)" required>
+                          <div class="dropdown-menu dropdown-menu-left shadow">
+                            <span class="dropdown-item">Not found</span>
+                          </div>
+                        </div>
                         <input type="text" class="form-control border-left-danger mb-1" name="preparedemail"
                           placeholder="Prepared by E-Mail (required)" required>
-                        <input type="text" class="form-control border-left-danger mb-1" name="fleetcoordinator"
-                          placeholder="Fleet Coordinator (required)" required>
+                        <div class="dropdown no-arrow">
+                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
+                            data-toggle="dropdown" name="fleetcoordinator" placeholder="Fleet Coordinator (required)"
+                            required>
+                          <div class="dropdown-menu dropdown-menu-left shadow">
+                            <span class="dropdown-item">Not found</span>
+                          </div>
+                        </div>
                         <input type="text" class="form-control border-left-danger mb-1" name="fleetcoordinatoredemail"
                           placeholder="Fleet Coordinator E-Mail (required)" required>
-                        <input type="text" class="form-control border-left-danger mb-1" name="equipmentmanager"
-                          placeholder="Equipment Manager (required)" required>
+                        <div class="dropdown no-arrow">
+                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
+                            data-toggle="dropdown" name="equipmentmanager" placeholder="Equipment Manager (required)"
+                            required>
+                          <div class="dropdown-menu dropdown-menu-left shadow">
+                            <span class="dropdown-item">Not found</span>
+                          </div>
+                        </div>
                         <input type="text" class="form-control border-left-danger mb-1" name="equipmentmanageredemail"
                           placeholder="Equipment Manager E-Mail (required)" required>
                       </div>
@@ -153,12 +174,23 @@
                         <p class="lead text-center radius-2">From</p>
                         <input type="text" class="form-control border-left-danger mb-1" name="fromdepot"
                           placeholder="Depot / Site (required)" required>
-                        <input type="text" class="form-control border-left-danger mb-1" name="request"
-                          placeholder="Request By (required)" required>
+                        <div class="dropdown no-arrow">
+                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
+                            data-toggle="dropdown" name="request" placeholder="Request By (required)" required>
+                          <div class="dropdown-menu dropdown-menu-left shadow">
+                            <span class="dropdown-item">Not found</span>
+                          </div>
+                        </div>
                         <input type="text" class="form-control border-left-danger mb-1" name="requestemail"
                           placeholder="Request By E-Mail (required)" required>
-                        <input type="text" class="form-control border-left-danger mb-1" name="frombumanager"
-                          placeholder="Business Unit Manager (required)" required>
+                        <div class="dropdown no-arrow">
+                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
+                            data-toggle="dropdown" name="frombumanager" placeholder="Business Unit Manager (required)"
+                            required>
+                          <div class="dropdown-menu dropdown-menu-left shadow">
+                            <span class="dropdown-item">Not found</span>
+                          </div>
+                        </div>
                         <input type="text" class="form-control border-left-danger mb-1" name="frombumanageremail"
                           placeholder="Business Unit Manager E-Mail (required)" required>
                       </div>
@@ -166,51 +198,64 @@
                         <p class="lead text-center radius-2">To</p>
                         <input type="text" class="form-control border-left-danger mb-1" name="todepot"
                           placeholder="Depot / Site (required)" required>
-                        <input type="text" class="form-control border-left-danger mb-1" name="tobumanager"
-                          placeholder="Business Unit Manager (required)" required>
+                        <div class="dropdown no-arrow">
+                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
+                            data-toggle="dropdown" name="tobumanager" placeholder="Business Unit Manager (required)"
+                            required>
+                          <div class="dropdown-menu dropdown-menu-left shadow">
+                            <span class="dropdown-item">Not found</span>
+                          </div>
+                        </div>
                         <input type="text" class="form-control border-left-danger mb-1" name="tobumanageremail"
                           placeholder="Business Unit Manager E-Mail (required)" required>
-                        <input type="text" class="form-control border-left-danger mb-1" name="tostatemanager"
-                          placeholder="State Manager (required)" required>
-                        <input type="text" class="form-control border-left-danger mb-1" name="tostatemanageremail"
-                          placeholder="State Manager E-Mail (required)" required>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="update" class="d-none">
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                  <div class="card-body p-0">
-                    <div class="row">
-                      <div class="col-lg-6 d-none d-lg-block bg-success"></div>
-                      <div class="col-lg-6">
-                        <div class="p-5">
-                          <div class="text-justify">
-                            <h1 class="h4 text-gray-900 mb-2">Submitted!</h1>
-                            <p class="mb-4">Usu dolorem legendos in. Sit errem audiam omittantur ex. Quo ne ubique
-                              vocent conceptam. Cu quod nullam pri, sed rebum perpetua et.</p>
-                            <p class="mb-4">At qui nominavi definitionem. Vel atqui vivendo ancillae ne, his an
-                              prodesset constituto. Cum facer nullam eruditi cu. Usu ex erat magna primis, ea est errem
-                              splendide. Eum vero primis accusam ex, an sit laudem laoreet iudicabit, ne mea simul
-                              feugiat. Pri summo noluisse interpretaris ad, usu facete theophrastus id.</p>
-                            <p class="mb-4">Quod concludaturque per ea, his ei posse vidisse scribentur, et qui solum
-                              option. Ignota denique persecuti eu ius. Eum euripidis voluptaria id, sea no veniam
-                              regione. Te mei oblique delenit, mel ei oblique oportere dissentiet. Ut sumo possim
-                              pertinax duo.</p>
+                        <div class="dropdown no-arrow">
+                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
+                            data-toggle="dropdown" name="tostatemanager" placeholder="State Manager (required)"
+                            required>
+
+                          <div class="dropdown-menu dropdown-menu-left shadow">
+                            <span class="dropdown-item">Not found</span>
                           </div>
+                          <input type="text" class="form-control border-left-danger mb-1" name="tostatemanageremail"
+                            placeholder="State Manager E-Mail (required)" required>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
+                <div id="update" class="d-none">
+                  <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                      <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-success"></div>
+                        <div class="col-lg-6">
+                          <div class="p-5">
+                            <div class="text-justify">
+                              <h1 class="h4 text-gray-900 mb-2">Submitted!</h1>
+                              <p class="mb-4">Usu dolorem legendos in. Sit errem audiam omittantur ex. Quo ne ubique
+                                vocent conceptam. Cu quod nullam pri, sed rebum perpetua et.</p>
+                              <p class="mb-4">At qui nominavi definitionem. Vel atqui vivendo ancillae ne, his an
+                                prodesset constituto. Cum facer nullam eruditi cu. Usu ex erat magna primis, ea est
+                                errem
+                                splendide. Eum vero primis accusam ex, an sit laudem laoreet iudicabit, ne mea simul
+                                feugiat. Pri summo noluisse interpretaris ad, usu facete theophrastus id.</p>
+                              <p class="mb-4">Quod concludaturque per ea, his ei posse vidisse scribentur, et qui solum
+                                option. Ignota denique persecuti eu ius. Eum euripidis voluptaria id, sea no veniam
+                                regione. Te mei oblique delenit, mel ei oblique oportere dissentiet. Ut sumo possim
+                                pertinax duo.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
 
                 </div>
-
-              </div>
-              <div class="form-group my-3 row">
-                <div class="col"><button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group my-3 row">
+                  <div class="col"><button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
                 </div>
-              </div>
             </form>
 
           </div>
@@ -234,9 +279,15 @@
   <!-- End of Page Wrapper -->
 
   <!-- Bootstrap core JavaScript-->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://afiqrostam.github.io/learning/fleet/typeahead.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
   <script>
     var init = {}
     function get_init() {
