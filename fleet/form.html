@@ -188,14 +188,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
     var init = {}
-    function get_init(){
-      var f=arguments.callee.name;
-      console.time(f);
-      google.script.run.withSuccessHandler(
-        function(e,f){
-          if(e.s){ init=e.res }
-          console.timeEnd(f)
-          }).withUserObject(f).get_var('init')}
+    function get_init() {
+      try {
+        var f = arguments.callee.name;
+        console.time(f);
+        google.script.run.withSuccessHandler(
+          function (e, f) {
+            if (e.s) {
+              init = e.res;
+              $('body').removeClass('d-none')
+            }
+            console.timeEnd(f)
+          }).withUserObject(f).get_var('init')
+      }
+      catch (e) { console.log(e); $('body').removeClass('d-none') }
+    }
 
     $('.asset-delete').on('click', function (e) {
       e.preventDefault();
