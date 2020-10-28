@@ -187,15 +187,16 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
-    var session = {}
+    var init = {}
     function get_init(){
       var f=arguments.callee.name;
       console.time(f);
       google.script.run.withSuccessHandler(
         function(e,f){
-          if(e.s){ session=e.res }
+          if(e.s){ init=e.res }
           console.timeEnd(f)
-          }).withUserObject(f).get_var('init.session')}
+          }).withUserObject(f).get_var('init')}
+
     $('.asset-delete').on('click', function (e) {
       e.preventDefault();
       var parent = $(this).parents('.asset-container');
@@ -203,6 +204,7 @@
       if (count != 0) { parent.prev().find('.asset-delete').removeClass('d-none') }
       $(this).parents('.asset-container').remove()
     });
+
     $('#addasset').on('click', function (e) {
       e.preventDefault();
       var parent = $(this).parents('.form-group');
@@ -217,6 +219,8 @@
       copy.find(':input').each(function () { $(this).val('') })
       parent.before(copy)
     });
+    
+    get_init();
   </script>
 
 </body>
