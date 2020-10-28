@@ -125,33 +125,16 @@
                         <input type="text" class="form-control mb-1" name="enginehours" placeholder="Engine Hours">
                       </div>
                       <div class="col mx-2">
-                        <div class="dropdown no-arrow">
-                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
-                            data-toggle="dropdown" name="prepared" placeholder="Prepared by (required)" required>
-                          <div class="dropdown-menu dropdown-menu-left shadow">
-                            <span class="dropdown-item">Not found</span>
-                          </div>
-                        </div>
+                        <input type="text" class="form-control border-left-danger typeahead mb-1" name="prepared"
+                          placeholder="Prepared by (required)" required>
                         <input type="text" class="form-control border-left-danger mb-1" name="preparedemail"
                           placeholder="Prepared by E-Mail (required)" required>
-                        <div class="dropdown no-arrow">
-                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
-                            data-toggle="dropdown" name="fleetcoordinator" placeholder="Fleet Coordinator (required)"
-                            required>
-                          <div class="dropdown-menu dropdown-menu-left shadow">
-                            <span class="dropdown-item">Not found</span>
-                          </div>
-                        </div>
+                        <input type="text" class="form-control border-left-danger typeahead mb-1"
+                          name="fleetcoordinator" placeholder="Fleet Coordinator (required)" required>
                         <input type="text" class="form-control border-left-danger mb-1" name="fleetcoordinatoredemail"
                           placeholder="Fleet Coordinator E-Mail (required)" required>
-                        <div class="dropdown no-arrow">
-                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
-                            data-toggle="dropdown" name="equipmentmanager" placeholder="Equipment Manager (required)"
-                            required>
-                          <div class="dropdown-menu dropdown-menu-left shadow">
-                            <span class="dropdown-item">Not found</span>
-                          </div>
-                        </div>
+                        <input type="text" class="form-control border-left-danger typeahead mb-1"
+                          name="equipmentmanager" placeholder="Equipment Manager (required)" required>
                         <input type="text" class="form-control border-left-danger mb-1" name="equipmentmanageredemail"
                           placeholder="Equipment Manager E-Mail (required)" required>
                       </div>
@@ -174,23 +157,12 @@
                         <p class="lead text-center radius-2">From</p>
                         <input type="text" class="form-control border-left-danger mb-1" name="fromdepot"
                           placeholder="Depot / Site (required)" required>
-                        <div class="dropdown no-arrow">
-                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
-                            data-toggle="dropdown" name="request" placeholder="Request By (required)" required>
-                          <div class="dropdown-menu dropdown-menu-left shadow">
-                            <span class="dropdown-item">Not found</span>
-                          </div>
-                        </div>
+                        <input type="text" class="form-control border-left-danger typeahead mb-1" name="request"
+                          placeholder="Request By (required)" required>
                         <input type="text" class="form-control border-left-danger mb-1" name="requestemail"
                           placeholder="Request By E-Mail (required)" required>
-                        <div class="dropdown no-arrow">
-                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
-                            data-toggle="dropdown" name="frombumanager" placeholder="Business Unit Manager (required)"
-                            required>
-                          <div class="dropdown-menu dropdown-menu-left shadow">
-                            <span class="dropdown-item">Not found</span>
-                          </div>
-                        </div>
+                        <input type="text" class="form-control border-left-danger typeahead mb-1" name="frombumanager"
+                          placeholder="Business Unit Manager (required)" required>
                         <input type="text" class="form-control border-left-danger mb-1" name="frombumanageremail"
                           placeholder="Business Unit Manager E-Mail (required)" required>
                       </div>
@@ -198,64 +170,52 @@
                         <p class="lead text-center radius-2">To</p>
                         <input type="text" class="form-control border-left-danger mb-1" name="todepot"
                           placeholder="Depot / Site (required)" required>
-                        <div class="dropdown no-arrow">
-                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
-                            data-toggle="dropdown" name="tobumanager" placeholder="Business Unit Manager (required)"
-                            required>
-                          <div class="dropdown-menu dropdown-menu-left shadow">
-                            <span class="dropdown-item">Not found</span>
-                          </div>
-                        </div>
+                        <input type="text" class="form-control border-left-danger typeahead mb-1" name="tobumanager"
+                          placeholder="Business Unit Manager (required)" required>
                         <input type="text" class="form-control border-left-danger mb-1" name="tobumanageremail"
                           placeholder="Business Unit Manager E-Mail (required)" required>
-                        <div class="dropdown no-arrow">
-                          <input type="text" class="form-control border-left-danger dropdown-toggle mb-1"
-                            data-toggle="dropdown" name="tostatemanager" placeholder="State Manager (required)"
-                            required>
-
-                          <div class="dropdown-menu dropdown-menu-left shadow">
-                            <span class="dropdown-item">Not found</span>
-                          </div>
-                          <input type="text" class="form-control border-left-danger mb-1" name="tostatemanageremail"
-                            placeholder="State Manager E-Mail (required)" required>
-                        </div>
+                        <input type="text" class="form-control border-left-danger typeahead mb-1" name="tostatemanager"
+                          placeholder="State Manager (required)" required>
+                        <input type="text" class="form-control border-left-danger mb-1" name="tostatemanageremail"
+                          placeholder="State Manager E-Mail (required)" required>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div id="update" class="d-none">
-                  <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                      <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-success"></div>
-                        <div class="col-lg-6">
-                          <div class="p-5">
-                            <div class="text-justify">
-                              <h1 class="h4 text-gray-900 mb-2">Submitted!</h1>
-                              <p class="mb-4">Usu dolorem legendos in. Sit errem audiam omittantur ex. Quo ne ubique
-                                vocent conceptam. Cu quod nullam pri, sed rebum perpetua et.</p>
-                              <p class="mb-4">At qui nominavi definitionem. Vel atqui vivendo ancillae ne, his an
-                                prodesset constituto. Cum facer nullam eruditi cu. Usu ex erat magna primis, ea est
-                                errem
-                                splendide. Eum vero primis accusam ex, an sit laudem laoreet iudicabit, ne mea simul
-                                feugiat. Pri summo noluisse interpretaris ad, usu facete theophrastus id.</p>
-                              <p class="mb-4">Quod concludaturque per ea, his ei posse vidisse scribentur, et qui solum
-                                option. Ignota denique persecuti eu ius. Eum euripidis voluptaria id, sea no veniam
-                                regione. Te mei oblique delenit, mel ei oblique oportere dissentiet. Ut sumo possim
-                                pertinax duo.</p>
-                            </div>
+              </div>
+              <div id="update" class="d-none">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                  <div class="card-body p-0">
+                    <div class="row">
+                      <div class="col-lg-6 d-none d-lg-block bg-success"></div>
+                      <div class="col-lg-6">
+                        <div class="p-5">
+                          <div class="text-justify">
+                            <h1 class="h4 text-gray-900 mb-2">Submitted!</h1>
+                            <p class="mb-4">Usu dolorem legendos in. Sit errem audiam omittantur ex. Quo ne ubique
+                              vocent conceptam. Cu quod nullam pri, sed rebum perpetua et.</p>
+                            <p class="mb-4">At qui nominavi definitionem. Vel atqui vivendo ancillae ne, his an
+                              prodesset constituto. Cum facer nullam eruditi cu. Usu ex erat magna primis, ea est
+                              errem
+                              splendide. Eum vero primis accusam ex, an sit laudem laoreet iudicabit, ne mea simul
+                              feugiat. Pri summo noluisse interpretaris ad, usu facete theophrastus id.</p>
+                            <p class="mb-4">Quod concludaturque per ea, his ei posse vidisse scribentur, et qui solum
+                              option. Ignota denique persecuti eu ius. Eum euripidis voluptaria id, sea no veniam
+                              regione. Te mei oblique delenit, mel ei oblique oportere dissentiet. Ut sumo possim
+                              pertinax duo.</p>
                           </div>
                         </div>
                       </div>
                     </div>
-
                   </div>
 
                 </div>
-                <div class="form-group my-3 row">
-                  <div class="col"><button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
+
+              </div>
+              <div class="form-group my-3 row">
+                <div class="col"><button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+              </div>
             </form>
 
           </div>
