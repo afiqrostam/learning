@@ -304,7 +304,35 @@
         $('#update').removeClass('d-none')
       }
     });
-
+    
+    $(':input.form-control.typeahead').each(function () {
+      $(this).typeahead({
+        minLength: 3,
+        items: 'all',
+        delay: 50,
+        autoSelect: true,
+        source:
+          function (c, f) {
+            google.script.run.withSuccessHandler(
+              function (e, f) {
+                data = [{ name: 'not found', id: '', title: '' }]
+                if (e.s) {
+                  if (e.res.length != 0) {
+                    data = $.map(e.res, function (d) { return { name: d.name, id: d.email, title: d.title } })
+                  }
+                }
+                return f(data)
+              }).withUserObject(f).get_users(c)
+          },
+        afterSelect: function (e) {
+          $(this.$element).val(e.name)
+          $(this.$element).nextAll(':input:first').val(e.id)
+        }
+        ,
+        displayText: function (e) { return e.name + ' <br><strong class="mb-1 border-bottom">' + e.title + '</strong>' }
+      })
+    });
+    
     get_init();
   </script>
 
